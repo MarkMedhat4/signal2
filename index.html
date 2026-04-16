@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signals & Systems — Modern Reference (EC321M)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Signals & Systems — Modern Reference</h1>
+        <p class="subtitle">EC321M · Reference v2 · 18 Topics · 13 FT Properties · 13 FT Pairs · 5 MATLAB Scripts</p>
+    </header>
+
+    <nav id="toc">
+        <h2>📚 Quick Navigation</h2>
+        <ul>
+            <li><a href="#signals">📊 Signal Basics</a></li>
+            <li><a href="#energy">⚡ Energy & Power</a></li>
+            <li><a href="#evenodd">🔄 Even & Odd</a></li>
+            <li><a href="#periodic">📅 Periodicity</a></li>
+            <li><a href="#systems">⚙️ System Properties</a></li>
+            <li><a href="#fourier">🌊 Fourier Analysis</a></li>
+            <li><a href="#matlab">💻 MATLAB Code</a></li>
+            <li><a href="#interactive">🎛️ Interactive Sine Wave</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="signals">
+            <h2>📊 Signal Basics</h2>
+            <h3>Standard Signal Waveforms</h3>
+            <ul>
+                <li><code>sin(ω₀t)</code> → Power: A²/2</li>
+                <li><code>u(t)</code> → Power: 1/2</li>
+                <li><code>rect(t/τ)</code> → FT: Aτ·sinc(τF)</li>
+                <li><code>tri(t/τ)</code> → FT: Aτ·sinc²(τF)</li>
+                <li><code>e⁻ᵃᵗu(t)</code> → Energy: A²/2a</li>
+                <li><code>δ(t)</code> → FT: 1</li>
+            </ul>
+        </section>
+
+        <section id="energy">
+            <h2>⚡ Energy & Power Signals</h2>
+            <table>
+                <thead>
+                    <tr><th>Signal</th><th>Energy E</th><th>Power P</th><th>Type</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>A·cos(ω₀t)</td><td>∞</td><td>A²/2</td><td>Power</td></tr>
+                    <tr><td>A·e⁻ᵃᵗu(t) (a>0)</td><td>A²/2a</td><td>0</td><td>Energy</td></tr>
+                    <tr><td>A·e⁻ᵃ|ᵗ| (a>0)</td><td>A²/a</td><td>0</td><td>Energy</td></tr>
+                    <tr><td>u(t)</td><td>∞</td><td>1/2</td><td>Power</td></tr>
+                    <tr><td>eᵗu(t)</td><td>∞</td><td>∞</td><td>Neither</td></tr>
+                </tbody>
+            </table>
+            <div class="note">
+                <strong>Energy Signal:</strong> 0 < E < ∞, P = 0. Aperiodic. <br>
+                <strong>Power Signal:</strong> 0 < P < ∞, E = ∞. Periodic. <br>
+                <strong>Neither:</strong> Both infinite (e.g., growing exponential, ramp).
+            </div>
+        </section>
+
+        <section id="evenodd">
+            <h2>🔄 Even & Odd Signals</h2>
+            <p><strong>Even:</strong> x(−t) = x(t) → Symmetric. <code>x_even(t) = [x(t) + x(−t)] / 2</code></p>
+            <p><strong>Odd:</strong> x(−t) = −x(t) → Anti-symmetric, passes through 0. <code>x_odd(t) = [x(t) − x(−t)] / 2</code></p>
+            <div class="note">
+                Even × Even = Even | Odd × Odd = Even | Odd × Even = Odd
+            </div>
+        </section>
+
+        <section id="periodic">
+            <h2>📅 Periodicity</h2>
+            <p><strong>CT Periodic:</strong> x(t) = x(t ± nT₀) | T₀ > 0, finite</p>
+            <p><strong>DT Periodic:</strong> x[n] = x[n ± mN] | N = positive integer</p>
+            <div class="note">
+                Composite: T₁/T₂ Rational → T₀ = LCM(T₁, T₂) [Periodic]<br>
+                T₁/T₂ Irrational → Not Periodic
+            </div>
+        </section>
+
+        <section id="systems">
+            <h2>⚙️ System Properties</h2>
+            <table>
+                <thead><tr><th>System</th><th>Linear?</th><th>Causal?</th><th>Time-Inv?</th></tr></thead>
+                <tbody>
+                    <tr><td>cos[x(t−1)]</td><td>Non-linear</td><td>Causal</td><td>TI ✓</td></tr>
+                    <tr><td>3x(3t+3)</td><td>Linear</td><td>Non-causal</td><td>TV ✗</td></tr>
+                    <tr><td>ln[x(t)]</td><td>Non-linear</td><td>Causal</td><td>TI ✓</td></tr>
+                    <tr><td>eᵗ·x(t)</td><td>Linear</td><td>Causal</td><td>TV ✗</td></tr>
+                    <tr><td>7x(t) + 6</td><td>Non-linear</td><td>Causal</td><td>TI ✓</td></tr>
+                </tbody>
+            </table>
+            <h3>Linearity Test</h3>
+            <p>💡 Golden Rule: T[a·x₁ + b·x₂] = a·T[x₁] + b·T[x₂]</p>
+            <p><strong>Disqualifiers:</strong> cos(·), sin(·), ln(·), e^x, x², |x|, +c</p>
+            <h3>Time-Invariance Test</h3>
+            <ol>
+                <li>Shift input: x(t) → x(t−t₀) → get y₁(t)</li>
+                <li>Shift output: t → (t−t₀) in y(t) → get y(t−t₀)</li>
+                <li>If y₁(t) = y(t−t₀) → TIME INVARIANT ✓</li>
+            </ol>
+            <h3>Causality</h3>
+            <p><strong>Causal:</strong> Output depends on present & past inputs only. (e.g., y[n] = x[n] + x[n-1])</p>
+            <p><strong>Non-Causal:</strong> Needs future inputs. (e.g., y[n] = x[n+2] − x[n])</p>
+        </section>
+
+        <section id="fourier">
+            <h2>🌊 Fourier Analysis</h2>
+            <h3>Fourier Series (Periodic)</h3>
+            <p>① Exponential: x(t) = Σ Cₖ e^(jkω₀t) | Cₙ = (1/T₀) ∫ x(t) e^(−jnω₀t) dt</p>
+            <p>② Combined Trig: x(t) = C₀ + Σ 2|Cₖ| cos(kω₀t + θₖ)</p>
+            <p>③ Trig Form: x(t) = A₀ + Σ [Aₖ cos(kω₀t) + Bₖ sin(kω₀t)]</p>
+            <div class="note">Even → Bₖ=0 | Odd → Aₖ=0, A₀=0</div>
+            
+            <h3>Fourier Transform (Aperiodic)</h3>
+            <p>Forward: X(F) = ∫ x(t) e^(−j2πFt) dt | Inverse: x(t) = ∫ X(F) e^(+j2πFt) dF</p>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>#</th><th>Property</th><th>Time Domain</th><th>Freq Domain</th></tr></thead>
+                    <tbody>
+                        <tr><td>1</td><td>Linearity</td><td>ag₁ + bg₂</td><td>aG₁ + bG₂</td></tr>
+                        <tr><td>2</td><td>Time Shift</td><td>g(t ± t₀)</td><td>G(F)·e^(±j2πFt₀)</td></tr>
+                        <tr><td>3</td><td>Freq Shift</td><td>g(t)·e^(±j2πf₀t)</td><td>G(F ∓ f₀)</td></tr>
+                        <tr><td>4</td><td>Time Scaling</td><td>g(at)</td><td>(1/|a|)·G(F/a)</td></tr>
+                        <tr><td>5</td><td>Duality</td><td>G(t)</td><td>g(−F)</td></tr>
+                        <tr><td>6</td><td>Area g(t)</td><td>∫g(t)dt</td><td>G(0)</td></tr>
+                        <tr><td>7</td><td>Area G(F)</td><td>g(0)</td><td>∫G(F)dF</td></tr>
+                        <tr><td>8</td><td>Diff (time)</td><td>d/dt[g(t)]</td><td>j2πF·G(F)</td></tr>
+                        <tr><td>9</td><td>Diff (freq)</td><td>−j2πt·g(t)</td><td>d/dF[G(F)]</td></tr>
+                        <tr><td>10</td><td>Integration</td><td>∫g(τ)dτ</td><td>G(F)/j2πF + ½G(0)δ(F)</td></tr>
+                        <tr><td>11</td><td>Conjugate</td><td>g*(t)</td><td>G*(−F)</td></tr>
+                        <tr><td>12</td><td>Multiplication</td><td>g₁·g₂</td><td>G₁ ⊗ G₂</td></tr>
+                        <tr><td>13</td><td>Convolution</td><td>g₁ ⊗ g₂</td><td>G₁·G₂</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><strong>Key FT Pairs:</strong> rect ↔ sinc | tri ↔ sinc² | e⁻ᵃᵗu(t) ↔ 1/(a+j2πF) | δ(t) ↔ 1 | cos ↔ ½[δ(F−f₀)+δ(F+f₀)]</p>
+        </section>
+
+        <section id="matlab">
+            <h2>💻 MATLAB Code Library</h2>
+            <h3>01 · Simple Sine Wave</h3>
+            <pre><code>t = 0:0.01:2*pi;
+y = sin(t);
+plot(t, y, 'b', 'LineWidth', 2); grid on;</code></pre>
+            <h3>02 · Unit Step u(t)</h3>
+            <pre><code>t = -5:0.01:5;
+u = double(t >= 0);
+plot(t, u, 'LineWidth', 2); ylim([-0.2 1.2]);</code></pre>
+            <h3>03 · Triangular Signal</h3>
+            <pre><code>t = -5:0.01:5; A=2; T=2; t0=1;
+y = A * max(1 - abs((t-t0)/T), 0);
+plot(t, y, 'r', 'LineWidth', 2);</code></pre>
+            <h3>04 · Rectangular Pulse</h3>
+            <pre><code>t = -5:0.01:5; A=2; t1=1; t2=4;
+y = A * (double(t>=t1) - double(t>=t2));
+plot(t, y, 'g', 'LineWidth', 2);</code></pre>
+            <h3>05 · Exponential e⁻ᵃᵗu(t)</h3>
+            <pre><code>t = -1:0.01:5; a=1.5;
+y = exp(-a*t) .* double(t>=0);
+plot(t, y, 'm', 'LineWidth', 2);</code></pre>
+        </section>
+
+        <section id="interactive">
+            <h2>🎛️ Interactive Sine Wave Generator</h2>
+            <div class="controls">
+                <label>Amplitude (A): <input type="range" id="amp" min="0.1" max="3" step="0.1" value="1.0"></label>
+                <label>Frequency (f₀): <input type="range" id="freq" min="0.5" max="5" step="0.1" value="1.0"></label>
+                <label>Phase (φ): <input type="range" id="phase" min="0" max="6.28" step="0.01" value="0"></label>
+            </div>
+            <p class="formula">x(t) = <span id="eqA">1.0</span> · sin(2π · <span id="eqF">1.0</span> · t + <span id="eqP">0.0</span>)</p>
+            <canvas id="sineCanvas" width="800" height="250"></canvas>
+        </section>
+    </main>
+
+    <footer>
+        <p>📡 Complete Reference Guide · 2026 | EC321M · Signals & Systems</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
