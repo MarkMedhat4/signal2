@@ -1,184 +1,689 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signals & Systems — Modern Reference (EC321M)</title>
+    <title>EC321M · Signals & Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Signals & Systems — Modern Reference</h1>
-        <p class="subtitle">EC321M · Reference v2 · 18 Topics · 13 FT Properties · 13 FT Pairs · 5 MATLAB Scripts</p>
-    </header>
 
-    <nav id="toc">
-        <h2>📚 Quick Navigation</h2>
-        <ul>
-            <li><a href="#signals">📊 Signal Basics</a></li>
-            <li><a href="#energy">⚡ Energy & Power</a></li>
-            <li><a href="#evenodd">🔄 Even & Odd</a></li>
-            <li><a href="#periodic">📅 Periodicity</a></li>
-            <li><a href="#systems">⚙️ System Properties</a></li>
-            <li><a href="#fourier">🌊 Fourier Analysis</a></li>
-            <li><a href="#matlab">💻 MATLAB Code</a></li>
-            <li><a href="#interactive">🎛️ Interactive Sine Wave</a></li>
-        </ul>
-    </nav>
+<div class="bg-grid"></div>
 
-    <main>
-        <section id="signals">
-            <h2>📊 Signal Basics</h2>
-            <h3>Standard Signal Waveforms</h3>
-            <ul>
-                <li><code>sin(ω₀t)</code> → Power: A²/2</li>
-                <li><code>u(t)</code> → Power: 1/2</li>
-                <li><code>rect(t/τ)</code> → FT: Aτ·sinc(τF)</li>
-                <li><code>tri(t/τ)</code> → FT: Aτ·sinc²(τF)</li>
-                <li><code>e⁻ᵃᵗu(t)</code> → Energy: A²/2a</li>
-                <li><code>δ(t)</code> → FT: 1</li>
-            </ul>
-        </section>
+<header>
+    <div class="header-inner">
+        <div class="logo-block">
+            <span class="logo-icon">〜</span>
+            <div>
+                <h1>Signals &amp; Systems</h1>
+                <p class="course-tag">EC321M · 2026 · Complete Reference</p>
+            </div>
+        </div>
+        <div class="header-stats">
+            <span class="stat">18 Topics</span>
+            <span class="stat">13 FT Props</span>
+            <span class="stat">AI Tutor</span>
+        </div>
+    </div>
+</header>
 
-        <section id="energy">
-            <h2>⚡ Energy & Power Signals</h2>
+<nav id="topnav">
+    <button class="nav-btn active" data-section="signals">📊 Signals</button>
+    <button class="nav-btn" data-section="systems">⚙️ Systems</button>
+    <button class="nav-btn" data-section="fourier">🌊 Fourier</button>
+    <button class="nav-btn" data-section="laplace">🔺 Laplace</button>
+    <button class="nav-btn" data-section="convolution">✳️ Convolution</button>
+    <button class="nav-btn" data-section="interactive">🎛️ Interactive</button>
+    <button class="nav-btn" data-section="matlab">💻 MATLAB</button>
+    <button class="nav-btn ai-btn" data-section="ai">🤖 AI Tutor</button>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════ SIGNALS ═══════════════════════ -->
+<section id="signals" class="tab active">
+    <div class="section-header">
+        <h2>📊 Signal Basics</h2>
+        <p class="section-sub">Types · Energy &amp; Power · Even/Odd · Periodicity</p>
+    </div>
+
+    <div class="card-grid">
+        <div class="card">
+            <h3>⚡ Energy &amp; Power</h3>
             <table>
-                <thead>
-                    <tr><th>Signal</th><th>Energy E</th><th>Power P</th><th>Type</th></tr>
-                </thead>
+                <thead><tr><th>Signal</th><th>Energy E</th><th>Power P</th><th>Type</th></tr></thead>
                 <tbody>
-                    <tr><td>A·cos(ω₀t)</td><td>∞</td><td>A²/2</td><td>Power</td></tr>
-                    <tr><td>A·e⁻ᵃᵗu(t) (a>0)</td><td>A²/2a</td><td>0</td><td>Energy</td></tr>
-                    <tr><td>A·e⁻ᵃ|ᵗ| (a>0)</td><td>A²/a</td><td>0</td><td>Energy</td></tr>
-                    <tr><td>u(t)</td><td>∞</td><td>1/2</td><td>Power</td></tr>
-                    <tr><td>eᵗu(t)</td><td>∞</td><td>∞</td><td>Neither</td></tr>
+                    <tr><td>A·cos(ω₀t)</td><td>∞</td><td>A²/2</td><td class="badge power">Power</td></tr>
+                    <tr><td>A·e⁻ᵃᵗu(t) a&gt;0</td><td>A²/2a</td><td>0</td><td class="badge energy">Energy</td></tr>
+                    <tr><td>A·e⁻ᵃ|ᵗ| a&gt;0</td><td>A²/a</td><td>0</td><td class="badge energy">Energy</td></tr>
+                    <tr><td>u(t)</td><td>∞</td><td>1/2</td><td class="badge power">Power</td></tr>
+                    <tr><td>eᵗu(t)</td><td>∞</td><td>∞</td><td class="badge neither">Neither</td></tr>
+                    <tr><td>A·rect(t/τ)</td><td>A²τ</td><td>0</td><td class="badge energy">Energy</td></tr>
                 </tbody>
             </table>
             <div class="note">
-                <strong>Energy Signal:</strong> 0 < E < ∞, P = 0. Aperiodic. <br>
-                <strong>Power Signal:</strong> 0 < P < ∞, E = ∞. Periodic. <br>
-                <strong>Neither:</strong> Both infinite (e.g., growing exponential, ramp).
+                <strong>Energy:</strong> 0 &lt; E &lt; ∞, P=0 — Aperiodic signals<br>
+                <strong>Power:</strong> 0 &lt; P &lt; ∞, E=∞ — Periodic signals<br>
+                <strong>Neither:</strong> Both infinite (growing exponential, ramp)
             </div>
-        </section>
+        </div>
 
-        <section id="evenodd">
-            <h2>🔄 Even & Odd Signals</h2>
-            <p><strong>Even:</strong> x(−t) = x(t) → Symmetric. <code>x_even(t) = [x(t) + x(−t)] / 2</code></p>
-            <p><strong>Odd:</strong> x(−t) = −x(t) → Anti-symmetric, passes through 0. <code>x_odd(t) = [x(t) − x(−t)] / 2</code></p>
+        <div class="card">
+            <h3>🔄 Even &amp; Odd Decomposition</h3>
+            <div class="formula-block">
+                <div class="formula-row">
+                    <span class="label">Even:</span>
+                    <code>xₑ(t) = [x(t) + x(−t)] / 2</code>
+                </div>
+                <div class="formula-row">
+                    <span class="label">Odd:</span>
+                    <code>xₒ(t) = [x(t) − x(−t)] / 2</code>
+                </div>
+            </div>
+            <div class="rules-grid">
+                <div class="rule">Even × Even = <strong>Even</strong></div>
+                <div class="rule">Odd × Odd = <strong>Even</strong></div>
+                <div class="rule">Odd × Even = <strong>Odd</strong></div>
+                <div class="rule">∫ Odd dt over [−T,T] = <strong>0</strong></div>
+            </div>
+
+            <h3 style="margin-top:1.5rem">📅 Periodicity</h3>
+            <div class="formula-block">
+                <div class="formula-row"><span class="label">CT:</span><code>x(t+T₀) = x(t)</code></div>
+                <div class="formula-row"><span class="label">DT:</span><code>x[n+N] = x[n]</code></div>
+            </div>
             <div class="note">
-                Even × Even = Even | Odd × Odd = Even | Odd × Even = Odd
+                Composite: T₁/T₂ <strong>rational</strong> → Periodic, T₀ = LCM(T₁,T₂)<br>
+                T₁/T₂ <strong>irrational</strong> → NOT Periodic
             </div>
-        </section>
+        </div>
 
-        <section id="periodic">
-            <h2>📅 Periodicity</h2>
-            <p><strong>CT Periodic:</strong> x(t) = x(t ± nT₀) | T₀ > 0, finite</p>
-            <p><strong>DT Periodic:</strong> x[n] = x[n ± mN] | N = positive integer</p>
-            <div class="note">
-                Composite: T₁/T₂ Rational → T₀ = LCM(T₁, T₂) [Periodic]<br>
-                T₁/T₂ Irrational → Not Periodic
-            </div>
-        </section>
-
-        <section id="systems">
-            <h2>⚙️ System Properties</h2>
+        <div class="card full-width">
+            <h3>📐 Standard Signal Waveforms</h3>
             <table>
-                <thead><tr><th>System</th><th>Linear?</th><th>Causal?</th><th>Time-Inv?</th></tr></thead>
+                <thead><tr><th>Signal</th><th>Expression</th><th>FT / Key Property</th><th>Energy / Power</th></tr></thead>
                 <tbody>
-                    <tr><td>cos[x(t−1)]</td><td>Non-linear</td><td>Causal</td><td>TI ✓</td></tr>
-                    <tr><td>3x(3t+3)</td><td>Linear</td><td>Non-causal</td><td>TV ✗</td></tr>
-                    <tr><td>ln[x(t)]</td><td>Non-linear</td><td>Causal</td><td>TI ✓</td></tr>
-                    <tr><td>eᵗ·x(t)</td><td>Linear</td><td>Causal</td><td>TV ✗</td></tr>
-                    <tr><td>7x(t) + 6</td><td>Non-linear</td><td>Causal</td><td>TI ✓</td></tr>
+                    <tr><td>Sine</td><td>A·sin(ω₀t)</td><td>FT: jA/2·[δ(F+f₀)−δ(F−f₀)]</td><td>P = A²/2</td></tr>
+                    <tr><td>Unit Step</td><td>u(t)</td><td>FT: ½δ(F) + 1/(j2πF)</td><td>P = 1/2</td></tr>
+                    <tr><td>Rect Pulse</td><td>rect(t/τ)</td><td>FT: τ·sinc(τF)</td><td>E = A²τ</td></tr>
+                    <tr><td>Triangle</td><td>tri(t/τ)</td><td>FT: τ·sinc²(τF)</td><td>E = A²τ/3 ... (approx)</td></tr>
+                    <tr><td>Exp Decay</td><td>e⁻ᵃᵗu(t)</td><td>FT: 1/(a+j2πF)</td><td>E = 1/2a</td></tr>
+                    <tr><td>Impulse</td><td>δ(t)</td><td>FT: 1 (flat spectrum)</td><td>E = 1</td></tr>
+                    <tr><td>Complex Exp</td><td>e^(j2πf₀t)</td><td>FT: δ(F−f₀)</td><td>P = 1</td></tr>
                 </tbody>
             </table>
-            <h3>Linearity Test</h3>
-            <p>💡 Golden Rule: T[a·x₁ + b·x₂] = a·T[x₁] + b·T[x₂]</p>
-            <p><strong>Disqualifiers:</strong> cos(·), sin(·), ln(·), e^x, x², |x|, +c</p>
-            <h3>Time-Invariance Test</h3>
-            <ol>
-                <li>Shift input: x(t) → x(t−t₀) → get y₁(t)</li>
-                <li>Shift output: t → (t−t₀) in y(t) → get y(t−t₀)</li>
-                <li>If y₁(t) = y(t−t₀) → TIME INVARIANT ✓</li>
-            </ol>
-            <h3>Causality</h3>
-            <p><strong>Causal:</strong> Output depends on present & past inputs only. (e.g., y[n] = x[n] + x[n-1])</p>
-            <p><strong>Non-Causal:</strong> Needs future inputs. (e.g., y[n] = x[n+2] − x[n])</p>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <section id="fourier">
-            <h2>🌊 Fourier Analysis</h2>
-            <h3>Fourier Series (Periodic)</h3>
-            <p>① Exponential: x(t) = Σ Cₖ e^(jkω₀t) | Cₙ = (1/T₀) ∫ x(t) e^(−jnω₀t) dt</p>
-            <p>② Combined Trig: x(t) = C₀ + Σ 2|Cₖ| cos(kω₀t + θₖ)</p>
-            <p>③ Trig Form: x(t) = A₀ + Σ [Aₖ cos(kω₀t) + Bₖ sin(kω₀t)]</p>
-            <div class="note">Even → Bₖ=0 | Odd → Aₖ=0, A₀=0</div>
-            
-            <h3>Fourier Transform (Aperiodic)</h3>
-            <p>Forward: X(F) = ∫ x(t) e^(−j2πFt) dt | Inverse: x(t) = ∫ X(F) e^(+j2πFt) dF</p>
-            <div class="table-container">
-                <table>
-                    <thead><tr><th>#</th><th>Property</th><th>Time Domain</th><th>Freq Domain</th></tr></thead>
-                    <tbody>
-                        <tr><td>1</td><td>Linearity</td><td>ag₁ + bg₂</td><td>aG₁ + bG₂</td></tr>
-                        <tr><td>2</td><td>Time Shift</td><td>g(t ± t₀)</td><td>G(F)·e^(±j2πFt₀)</td></tr>
-                        <tr><td>3</td><td>Freq Shift</td><td>g(t)·e^(±j2πf₀t)</td><td>G(F ∓ f₀)</td></tr>
-                        <tr><td>4</td><td>Time Scaling</td><td>g(at)</td><td>(1/|a|)·G(F/a)</td></tr>
-                        <tr><td>5</td><td>Duality</td><td>G(t)</td><td>g(−F)</td></tr>
-                        <tr><td>6</td><td>Area g(t)</td><td>∫g(t)dt</td><td>G(0)</td></tr>
-                        <tr><td>7</td><td>Area G(F)</td><td>g(0)</td><td>∫G(F)dF</td></tr>
-                        <tr><td>8</td><td>Diff (time)</td><td>d/dt[g(t)]</td><td>j2πF·G(F)</td></tr>
-                        <tr><td>9</td><td>Diff (freq)</td><td>−j2πt·g(t)</td><td>d/dF[G(F)]</td></tr>
-                        <tr><td>10</td><td>Integration</td><td>∫g(τ)dτ</td><td>G(F)/j2πF + ½G(0)δ(F)</td></tr>
-                        <tr><td>11</td><td>Conjugate</td><td>g*(t)</td><td>G*(−F)</td></tr>
-                        <tr><td>12</td><td>Multiplication</td><td>g₁·g₂</td><td>G₁ ⊗ G₂</td></tr>
-                        <tr><td>13</td><td>Convolution</td><td>g₁ ⊗ g₂</td><td>G₁·G₂</td></tr>
-                    </tbody>
-                </table>
+<!-- ═══════════════════════ SYSTEMS ═══════════════════════ -->
+<section id="systems" class="tab">
+    <div class="section-header">
+        <h2>⚙️ System Properties</h2>
+        <p class="section-sub">Linearity · Time Invariance · Causality · Stability · Memory</p>
+    </div>
+
+    <div class="card-grid">
+        <div class="card full-width">
+            <h3>🧪 System Properties Table</h3>
+            <table>
+                <thead><tr><th>System y(t)</th><th>Linear?</th><th>Time Inv?</th><th>Causal?</th><th>Stable?</th><th>Memory?</th></tr></thead>
+                <tbody>
+                    <tr><td><code>cos[x(t−1)]</code></td><td class="no">❌ NL</td><td class="yes">✅ TI</td><td class="yes">✅ C</td><td class="yes">✅ S</td><td class="no">❌ NM</td></tr>
+                    <tr><td><code>3x(3t+3)</code></td><td class="yes">✅ L</td><td class="no">❌ TV</td><td class="no">❌ NC</td><td class="yes">✅ S</td><td class="no">❌ NM</td></tr>
+                    <tr><td><code>ln[x(t)]</code></td><td class="no">❌ NL</td><td class="yes">✅ TI</td><td class="yes">✅ C</td><td class="no">❌ NS</td><td class="no">❌ NM</td></tr>
+                    <tr><td><code>eᵗ·x(t)</code></td><td class="yes">✅ L</td><td class="no">❌ TV</td><td class="yes">✅ C</td><td class="no">❌ NS</td><td class="no">❌ NM</td></tr>
+                    <tr><td><code>7x(t) + 6</code></td><td class="no">❌ NL</td><td class="yes">✅ TI</td><td class="yes">✅ C</td><td class="yes">✅ S</td><td class="no">❌ NM</td></tr>
+                    <tr><td><code>∫ x(τ)dτ</code></td><td class="yes">✅ L</td><td class="yes">✅ TI</td><td class="yes">✅ C</td><td class="no">❌ NS</td><td class="yes">✅ M</td></tr>
+                    <tr><td><code>x[n] + x[n−1]</code></td><td class="yes">✅ L</td><td class="yes">✅ TI</td><td class="yes">✅ C</td><td class="yes">✅ S</td><td class="yes">✅ M</td></tr>
+                    <tr><td><code>x[n+2] − x[n]</code></td><td class="yes">✅ L</td><td class="yes">✅ TI</td><td class="no">❌ NC</td><td class="yes">✅ S</td><td class="yes">✅ M</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>📏 Linearity Test</h3>
+            <div class="steps">
+                <div class="step"><span class="step-num">1</span>Apply x₁ → get y₁, apply x₂ → get y₂</div>
+                <div class="step"><span class="step-num">2</span>Apply (ax₁ + bx₂) → get y₃</div>
+                <div class="step"><span class="step-num">3</span>Check: y₃ = ay₁ + by₂ ?</div>
             </div>
-            <p><strong>Key FT Pairs:</strong> rect ↔ sinc | tri ↔ sinc² | e⁻ᵃᵗu(t) ↔ 1/(a+j2πF) | δ(t) ↔ 1 | cos ↔ ½[δ(F−f₀)+δ(F+f₀)]</p>
-        </section>
+            <div class="note warning">
+                <strong>Disqualifiers (auto NL):</strong><br>
+                cos(·)  sin(·)  ln(·)  e^x  x²  |x|  +constant
+            </div>
+        </div>
 
-        <section id="matlab">
-            <h2>💻 MATLAB Code Library</h2>
-            <h3>01 · Simple Sine Wave</h3>
+        <div class="card">
+            <h3>⏱️ Time Invariance Test</h3>
+            <div class="steps">
+                <div class="step"><span class="step-num">1</span>Shift input: x(t) → x(t−t₀) → compute y₁(t)</div>
+                <div class="step"><span class="step-num">2</span>Take output y(t) → replace t with (t−t₀) → y₂(t)</div>
+                <div class="step"><span class="step-num">3</span>If y₁ = y₂ → TIME INVARIANT ✅</div>
+            </div>
+            <div class="note">
+                <strong>TV Clues:</strong> coefficient depends on t (like eᵗ, t², sin(t)·x(t)), or input has time scaling like x(at)
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>⏩ Causality</h3>
+            <p><strong>Causal:</strong> Output depends ONLY on present &amp; past inputs</p>
+            <p style="margin:.5rem 0"><code>y[n] = x[n] + x[n−1]</code> ✅ Causal</p>
+            <p><strong>Non-Causal:</strong> Needs future inputs</p>
+            <p style="margin:.5rem 0"><code>y[n] = x[n+2] − x[n]</code> ❌ Non-Causal (uses n+2)</p>
+        </div>
+
+        <div class="card">
+            <h3>🔒 BIBO Stability</h3>
+            <div class="formula-block">
+                <div class="formula-row"><span class="label">Def:</span><code>|x(t)| ≤ Mₓ → |y(t)| ≤ Mᵧ</code></div>
+                <div class="formula-row"><span class="label">LTI:</span><code>∫|h(τ)|dτ &lt; ∞</code></div>
+            </div>
+            <p style="margin-top:.5rem; font-size:.9rem; color:#94a3b8">If bounded input produces bounded output → Stable</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ FOURIER ═══════════════════════ -->
+<section id="fourier" class="tab">
+    <div class="section-header">
+        <h2>🌊 Fourier Analysis</h2>
+        <p class="section-sub">Fourier Series · Fourier Transform · Properties · Pairs</p>
+    </div>
+
+    <div class="card-grid">
+        <div class="card">
+            <h3>📐 Fourier Series (Periodic)</h3>
+            <div class="formula-block vertical">
+                <div class="formula-row"><span class="label">Exp:</span><code>x(t) = Σ Cₖ e^(jkω₀t)</code></div>
+                <div class="formula-row"><span class="label">Coeff:</span><code>Cₙ = (1/T₀) ∫₀ᵀ x(t)e^(−jnω₀t)dt</code></div>
+                <div class="formula-row"><span class="label">Trig:</span><code>x(t) = A₀ + Σ Aₖcos(kω₀t) + Bₖsin(kω₀t)</code></div>
+            </div>
+            <div class="note">Even signal → Bₖ = 0 | Odd signal → Aₖ = 0, A₀ = 0</div>
+            <div class="formula-block" style="margin-top:.75rem">
+                <div class="formula-row"><span class="label">Aₖ:</span><code>(2/T₀)∫x(t)cos(kω₀t)dt</code></div>
+                <div class="formula-row"><span class="label">Bₖ:</span><code>(2/T₀)∫x(t)sin(kω₀t)dt</code></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Fourier Transform (Aperiodic)</h3>
+            <div class="formula-block vertical">
+                <div class="formula-row"><span class="label">Forward:</span><code>X(F) = ∫ x(t) e^(−j2πFt) dt</code></div>
+                <div class="formula-row"><span class="label">Inverse:</span><code>x(t) = ∫ X(F) e^(+j2πFt) dF</code></div>
+                <div class="formula-row"><span class="label">Alt ω:</span><code>X(ω) = ∫ x(t) e^(−jωt) dt</code></div>
+            </div>
+            <div class="note">
+                Parseval: <code>∫|x(t)|²dt = ∫|X(F)|²dF</code>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h3>🔢 Fourier Transform Properties</h3>
+            <table>
+                <thead><tr><th>#</th><th>Property</th><th>Time Domain x(t)</th><th>Frequency Domain X(F)</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>Linearity</td><td>ag₁(t) + bg₂(t)</td><td>aG₁(F) + bG₂(F)</td></tr>
+                    <tr><td>2</td><td>Time Shift</td><td>g(t ± t₀)</td><td>G(F)·e^(±j2πFt₀)</td></tr>
+                    <tr><td>3</td><td>Frequency Shift</td><td>g(t)·e^(±j2πf₀t)</td><td>G(F ∓ f₀)</td></tr>
+                    <tr><td>4</td><td>Time Scaling</td><td>g(at)</td><td>(1/|a|)·G(F/a)</td></tr>
+                    <tr><td>5</td><td>Duality</td><td>G(t)</td><td>g(−F)</td></tr>
+                    <tr><td>6</td><td>Area g(t)</td><td>∫g(t)dt</td><td>G(0)</td></tr>
+                    <tr><td>7</td><td>Area G(F)</td><td>g(0)</td><td>∫G(F)dF</td></tr>
+                    <tr><td>8</td><td>Differentiation (t)</td><td>d/dt[g(t)]</td><td>j2πF·G(F)</td></tr>
+                    <tr><td>9</td><td>Differentiation (F)</td><td>−j2πt·g(t)</td><td>d/dF[G(F)]</td></tr>
+                    <tr><td>10</td><td>Integration</td><td>∫₋∞ᵗ g(τ)dτ</td><td>G(F)/j2πF + ½G(0)δ(F)</td></tr>
+                    <tr><td>11</td><td>Conjugate</td><td>g*(t)</td><td>G*(−F)</td></tr>
+                    <tr><td>12</td><td>Multiplication</td><td>g₁(t)·g₂(t)</td><td>G₁(F) ⊗ G₂(F)</td></tr>
+                    <tr><td>13</td><td>Convolution</td><td>g₁(t) ⊗ g₂(t)</td><td>G₁(F)·G₂(F)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card full-width">
+            <h3>📋 Common FT Pairs</h3>
+            <table>
+                <thead><tr><th>Signal x(t)</th><th>FT X(F)</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td>δ(t)</td><td>1</td><td>Flat spectrum</td></tr>
+                    <tr><td>1</td><td>δ(F)</td><td>DC only</td></tr>
+                    <tr><td>u(t)</td><td>½δ(F) + 1/(j2πF)</td><td>Unit step</td></tr>
+                    <tr><td>e^(j2πf₀t)</td><td>δ(F−f₀)</td><td>Complex exponential</td></tr>
+                    <tr><td>cos(2πf₀t)</td><td>½[δ(F−f₀) + δ(F+f₀)]</td><td>Real cosine</td></tr>
+                    <tr><td>sin(2πf₀t)</td><td>j/2[δ(F+f₀) − δ(F−f₀)]</td><td>Real sine</td></tr>
+                    <tr><td>rect(t/τ)</td><td>τ·sinc(τF)</td><td>Rectangular pulse</td></tr>
+                    <tr><td>tri(t/τ)</td><td>τ·sinc²(τF)</td><td>Triangular pulse</td></tr>
+                    <tr><td>e⁻ᵃᵗu(t), a&gt;0</td><td>1/(a+j2πF)</td><td>One-sided decay</td></tr>
+                    <tr><td>e⁻ᵃ|ᵗ|, a&gt;0</td><td>2a/(a²+(2πF)²)</td><td>Two-sided decay</td></tr>
+                    <tr><td>Σ δ(t−nT₀)</td><td>(1/T₀)Σ δ(F−n/T₀)</td><td>Impulse train</td></tr>
+                    <tr><td>sinc(2Wt)</td><td>(1/2W)rect(F/2W)</td><td>Ideal LPF</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ LAPLACE ═══════════════════════ -->
+<section id="laplace" class="tab">
+    <div class="section-header">
+        <h2>🔺 Laplace Transform</h2>
+        <p class="section-sub">Unilateral LT · Properties · Pairs · Inverse LT · Partial Fractions</p>
+    </div>
+
+    <div class="card-grid">
+        <div class="card">
+            <h3>📐 Definition</h3>
+            <div class="formula-block vertical">
+                <div class="formula-row"><span class="label">Bilateral:</span><code>X(s) = ∫₋∞^∞ x(t)e^(−st)dt</code></div>
+                <div class="formula-row"><span class="label">Unilateral:</span><code>X(s) = ∫₀^∞ x(t)e^(−st)dt</code></div>
+                <div class="formula-row"><span class="label">s:</span><code>s = σ + jω = σ + j2πF</code></div>
+                <div class="formula-row"><span class="label">Inverse:</span><code>x(t) = (1/2πj)∫ X(s)e^(st)ds</code></div>
+            </div>
+            <div class="note">
+                FT is special case of LT when <strong>s = j2πF</strong> (σ = 0, on jω axis)<br>
+                ROC must include jω axis for FT to exist
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🗺️ Pole-Zero &amp; ROC</h3>
+            <div class="steps">
+                <div class="step"><span class="step-num">○</span>Zeros: values of s where X(s) = 0</div>
+                <div class="step"><span class="step-num">×</span>Poles: values of s where X(s) = ∞</div>
+                <div class="step"><span class="step-num">ROC</span>Region of Convergence — where LT exists</div>
+            </div>
+            <div class="rules-grid">
+                <div class="rule">Causal → ROC: Re(s) &gt; rightmost pole</div>
+                <div class="rule">Anti-causal → ROC: Re(s) &lt; leftmost pole</div>
+                <div class="rule">Two-sided → ROC: strip between poles</div>
+                <div class="rule">Stable ↔ ROC includes jω axis</div>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h3>🔢 Laplace Transform Properties</h3>
+            <table>
+                <thead><tr><th>Property</th><th>Time Domain</th><th>s-Domain</th></tr></thead>
+                <tbody>
+                    <tr><td>Linearity</td><td>ax(t) + by(t)</td><td>aX(s) + bY(s)</td></tr>
+                    <tr><td>Time Shift</td><td>x(t−t₀)u(t−t₀)</td><td>e^(−st₀)·X(s)</td></tr>
+                    <tr><td>Freq Shift</td><td>e^(s₀t)·x(t)</td><td>X(s−s₀)</td></tr>
+                    <tr><td>Time Scaling</td><td>x(at)</td><td>(1/|a|)X(s/a)</td></tr>
+                    <tr><td>Differentiation</td><td>dx/dt</td><td>sX(s) − x(0⁻)</td></tr>
+                    <tr><td>2nd Derivative</td><td>d²x/dt²</td><td>s²X(s) − sx(0⁻) − x'(0⁻)</td></tr>
+                    <tr><td>Integration</td><td>∫₀ᵗ x(τ)dτ</td><td>X(s)/s</td></tr>
+                    <tr><td>Convolution</td><td>x(t) ⊗ h(t)</td><td>X(s)·H(s)</td></tr>
+                    <tr><td>Initial Value</td><td>x(0⁺)</td><td>lim s→∞ [s·X(s)]</td></tr>
+                    <tr><td>Final Value</td><td>x(∞)</td><td>lim s→0 [s·X(s)]</td></tr>
+                    <tr><td>Multiplication t</td><td>t·x(t)</td><td>−d/ds[X(s)]</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card full-width">
+            <h3>📋 Common Laplace Pairs</h3>
+            <table>
+                <thead><tr><th>x(t) (t≥0)</th><th>X(s)</th><th>ROC</th></tr></thead>
+                <tbody>
+                    <tr><td>δ(t)</td><td>1</td><td>All s</td></tr>
+                    <tr><td>u(t)</td><td>1/s</td><td>Re(s) &gt; 0</td></tr>
+                    <tr><td>t·u(t)</td><td>1/s²</td><td>Re(s) &gt; 0</td></tr>
+                    <tr><td>tⁿu(t)</td><td>n!/s^(n+1)</td><td>Re(s) &gt; 0</td></tr>
+                    <tr><td>e^(at)u(t)</td><td>1/(s−a)</td><td>Re(s) &gt; a</td></tr>
+                    <tr><td>t·e^(at)u(t)</td><td>1/(s−a)²</td><td>Re(s) &gt; a</td></tr>
+                    <tr><td>cos(ω₀t)u(t)</td><td>s/(s²+ω₀²)</td><td>Re(s) &gt; 0</td></tr>
+                    <tr><td>sin(ω₀t)u(t)</td><td>ω₀/(s²+ω₀²)</td><td>Re(s) &gt; 0</td></tr>
+                    <tr><td>e^(−at)cos(ω₀t)u(t)</td><td>(s+a)/((s+a)²+ω₀²)</td><td>Re(s) &gt; −a</td></tr>
+                    <tr><td>e^(−at)sin(ω₀t)u(t)</td><td>ω₀/((s+a)²+ω₀²)</td><td>Re(s) &gt; −a</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card full-width">
+            <h3>🧮 Partial Fraction Expansion</h3>
+            <div class="formula-block vertical">
+                <div class="formula-row"><span class="label">Form:</span><code>X(s) = N(s)/D(s) = Σ Aₖ/(s−pₖ)</code></div>
+                <div class="formula-row"><span class="label">Residue:</span><code>Aₖ = (s−pₖ)·X(s)|_{s=pₖ}</code></div>
+                <div class="formula-row"><span class="label">Repeated:</span><code>X(s) = A₁/(s−p) + A₂/(s−p)² + ...</code></div>
+            </div>
+            <div class="note">
+                <strong>Steps:</strong> 1) Factor D(s) → find poles. 2) Write PFE form. 3) Compute residues Aₖ. 4) Inverse LT each term using tables.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ CONVOLUTION ═══════════════════════ -->
+<section id="convolution" class="tab">
+    <div class="section-header">
+        <h2>✳️ Convolution</h2>
+        <p class="section-sub">CT Convolution · DT Convolution · LTI Systems · Properties</p>
+    </div>
+
+    <div class="card-grid">
+        <div class="card">
+            <h3>📐 CT Convolution</h3>
+            <div class="formula-block vertical">
+                <div class="formula-row"><span class="label">Def:</span><code>y(t) = x(t) ⊗ h(t)</code></div>
+                <div class="formula-row"><span class="label">Integral:</span><code>y(t) = ∫₋∞^∞ x(τ)·h(t−τ)dτ</code></div>
+                <div class="formula-row"><span class="label">Alt:</span><code>y(t) = ∫₋∞^∞ h(τ)·x(t−τ)dτ</code></div>
+            </div>
+            <div class="note">
+                Convolution in time → Multiplication in frequency!<br>
+                <code>Y(F) = X(F)·H(F)</code>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🔢 DT Convolution</h3>
+            <div class="formula-block vertical">
+                <div class="formula-row"><span class="label">Sum:</span><code>y[n] = x[n] ⊗ h[n]</code></div>
+                <div class="formula-row"><span class="label">Def:</span><code>y[n] = Σₖ x[k]·h[n−k]</code></div>
+                <div class="formula-row"><span class="label">Alt:</span><code>y[n] = Σₖ h[k]·x[n−k]</code></div>
+            </div>
+            <div class="note">
+                Length of output: if x has M points, h has N points → y has <strong>M+N−1</strong> points
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Convolution Properties</h3>
+            <div class="rules-grid">
+                <div class="rule"><strong>Commutative:</strong> x⊗h = h⊗x</div>
+                <div class="rule"><strong>Associative:</strong> (x⊗h₁)⊗h₂ = x⊗(h₁⊗h₂)</div>
+                <div class="rule"><strong>Distributive:</strong> x⊗(h₁+h₂) = x⊗h₁ + x⊗h₂</div>
+                <div class="rule"><strong>Identity:</strong> x(t)⊗δ(t) = x(t)</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🏗️ LTI System &amp; Impulse Response</h3>
+            <div class="steps">
+                <div class="step"><span class="step-num">h(t)</span>Impulse response fully characterizes an LTI system</div>
+                <div class="step"><span class="step-num">H(F)</span>Transfer function = FT of h(t)</div>
+                <div class="step"><span class="step-num">y(t)</span>Output = input ⊗ impulse response</div>
+            </div>
+            <div class="note">
+                System is <strong>stable</strong> ↔ ∫|h(τ)|dτ &lt; ∞<br>
+                System is <strong>causal</strong> ↔ h(t) = 0 for t &lt; 0
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h3>📊 Convolution Step-by-Step Method</h3>
+            <div class="steps horizontal">
+                <div class="step-card">
+                    <div class="step-num-big">1</div>
+                    <strong>Flip</strong>
+                    <p>Flip h(τ) → h(−τ)</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-card">
+                    <div class="step-num-big">2</div>
+                    <strong>Shift</strong>
+                    <p>Shift to get h(t−τ) for each t</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-card">
+                    <div class="step-num-big">3</div>
+                    <strong>Multiply</strong>
+                    <p>Multiply x(τ)·h(t−τ)</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step-card">
+                    <div class="step-num-big">4</div>
+                    <strong>Integrate</strong>
+                    <p>Integrate over τ → y(t)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h3>✏️ Common Convolution Results</h3>
+            <table>
+                <thead><tr><th>x(t)</th><th>h(t)</th><th>y(t) = x⊗h</th></tr></thead>
+                <tbody>
+                    <tr><td>rect(t/2)</td><td>rect(t/2)</td><td>2·tri(t/2)</td></tr>
+                    <tr><td>e⁻ᵃᵗu(t)</td><td>e⁻ᵇᵗu(t) (a≠b)</td><td>(e⁻ᵃᵗ − e⁻ᵇᵗ)/(b−a) · u(t)</td></tr>
+                    <tr><td>e⁻ᵃᵗu(t)</td><td>e⁻ᵃᵗu(t)</td><td>t·e⁻ᵃᵗu(t)</td></tr>
+                    <tr><td>u(t)</td><td>e⁻ᵃᵗu(t)</td><td>(1/a)(1−e⁻ᵃᵗ)u(t)</td></tr>
+                    <tr><td>u(t)</td><td>u(t)</td><td>t·u(t) (ramp)</td></tr>
+                    <tr><td>x(t)</td><td>δ(t−t₀)</td><td>x(t−t₀)</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ INTERACTIVE ═══════════════════════ -->
+<section id="interactive" class="tab">
+    <div class="section-header">
+        <h2>🎛️ Interactive Signal Generator</h2>
+        <p class="section-sub">Visualize signals in real-time</p>
+    </div>
+
+    <div class="card full-width">
+        <div class="viz-controls">
+            <div class="ctrl-group">
+                <label>Signal Type
+                    <select id="sigType">
+                        <option value="sine">Sine wave</option>
+                        <option value="cosine">Cosine wave</option>
+                        <option value="rect">Rectangular pulse</option>
+                        <option value="exp">Exp decay e⁻ᵃᵗu(t)</option>
+                        <option value="tri">Triangular</option>
+                        <option value="step">Unit step u(t)</option>
+                        <option value="sum">Sum of sines</option>
+                    </select>
+                </label>
+            </div>
+            <div class="ctrl-group">
+                <label>Amplitude A: <span id="ampVal">1.0</span>
+                    <input type="range" id="amp" min="0.1" max="3" step="0.1" value="1">
+                </label>
+            </div>
+            <div class="ctrl-group">
+                <label>Frequency f₀: <span id="freqVal">1.0</span> Hz
+                    <input type="range" id="freq" min="0.1" max="5" step="0.1" value="1">
+                </label>
+            </div>
+            <div class="ctrl-group">
+                <label>Phase φ: <span id="phaseVal">0.00</span> rad
+                    <input type="range" id="phase" min="0" max="6.28" step="0.01" value="0">
+                </label>
+            </div>
+            <div class="ctrl-group" id="decayCtrl">
+                <label>Decay a: <span id="decayVal">1.0</span>
+                    <input type="range" id="decay" min="0.1" max="4" step="0.1" value="1">
+                </label>
+            </div>
+        </div>
+        <div class="formula-display" id="sigFormula">x(t) = 1.0 · sin(2π · 1.0 · t + 0.00)</div>
+        <canvas id="sigCanvas" width="900" height="280"></canvas>
+    </div>
+
+    <div class="card full-width">
+        <h3>📊 Signal Properties (Auto-Calculated)</h3>
+        <div class="props-grid" id="sigProps">
+            <div class="prop-card"><div class="prop-label">Energy</div><div class="prop-val" id="propE">∞</div></div>
+            <div class="prop-card"><div class="prop-label">Power</div><div class="prop-val" id="propP">0.50</div></div>
+            <div class="prop-card"><div class="prop-label">Type</div><div class="prop-val" id="propType">Power</div></div>
+            <div class="prop-card"><div class="prop-label">Period T₀</div><div class="prop-val" id="propT">1.00 s</div></div>
+            <div class="prop-card"><div class="prop-label">Sym</div><div class="prop-val" id="propSym">Odd</div></div>
+            <div class="prop-card"><div class="prop-label">DC Value</div><div class="prop-val" id="propDC">0</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ MATLAB ═══════════════════════ -->
+<section id="matlab" class="tab">
+    <div class="section-header">
+        <h2>💻 MATLAB Code Library</h2>
+        <p class="section-sub">Ready-to-use scripts for signal processing</p>
+    </div>
+
+    <div class="card-grid">
+        <div class="card">
+            <h3>01 · Sine Wave</h3>
             <pre><code>t = 0:0.01:2*pi;
 y = sin(t);
-plot(t, y, 'b', 'LineWidth', 2); grid on;</code></pre>
+plot(t, y, 'b', 'LineWidth', 2);
+grid on;
+xlabel('t (s)'); ylabel('x(t)');
+title('Sine Wave');</code></pre>
+        </div>
+
+        <div class="card">
             <h3>02 · Unit Step u(t)</h3>
             <pre><code>t = -5:0.01:5;
 u = double(t >= 0);
-plot(t, u, 'LineWidth', 2); ylim([-0.2 1.2]);</code></pre>
-            <h3>03 · Triangular Signal</h3>
-            <pre><code>t = -5:0.01:5; A=2; T=2; t0=1;
-y = A * max(1 - abs((t-t0)/T), 0);
-plot(t, y, 'r', 'LineWidth', 2);</code></pre>
-            <h3>04 · Rectangular Pulse</h3>
-            <pre><code>t = -5:0.01:5; A=2; t1=1; t2=4;
-y = A * (double(t>=t1) - double(t>=t2));
-plot(t, y, 'g', 'LineWidth', 2);</code></pre>
-            <h3>05 · Exponential e⁻ᵃᵗu(t)</h3>
-            <pre><code>t = -1:0.01:5; a=1.5;
+plot(t, u, 'r', 'LineWidth', 2);
+ylim([-0.2 1.2]);
+xlabel('t'); ylabel('u(t)');
+title('Unit Step Function');</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>03 · Rectangular Pulse</h3>
+            <pre><code>t = -5:0.01:5;
+A=2; t1=-1; t2=1;
+y = A*(double(t>=t1) - double(t>=t2));
+plot(t, y, 'g', 'LineWidth', 2);
+title('Rectangular Pulse');</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>04 · Triangular Signal</h3>
+            <pre><code>t = -5:0.01:5;
+A=2; T=2; t0=0;
+y = A*max(1-abs((t-t0)/T), 0);
+plot(t, y, 'm', 'LineWidth', 2);
+title('Triangular Signal');</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>05 · Exp Decay</h3>
+            <pre><code>t = -1:0.01:5;
+a = 1.5;
 y = exp(-a*t) .* double(t>=0);
-plot(t, y, 'm', 'LineWidth', 2);</code></pre>
-        </section>
+plot(t, y, 'k', 'LineWidth', 2);
+title('Exponential Decay e^{-at}u(t)');</code></pre>
+        </div>
 
-        <section id="interactive">
-            <h2>🎛️ Interactive Sine Wave Generator</h2>
-            <div class="controls">
-                <label>Amplitude (A): <input type="range" id="amp" min="0.1" max="3" step="0.1" value="1.0"></label>
-                <label>Frequency (f₀): <input type="range" id="freq" min="0.5" max="5" step="0.1" value="1.0"></label>
-                <label>Phase (φ): <input type="range" id="phase" min="0" max="6.28" step="0.01" value="0"></label>
+        <div class="card">
+            <h3>06 · Fourier Series Reconstruction</h3>
+            <pre><code>t = -pi:0.01:pi; N=10;
+x = zeros(size(t));
+for k = 1:2:2*N-1
+  x = x + (4/pi)*(1/k)*sin(k*t);
+end
+plot(t, x, 'b', 'LineWidth', 2);
+title('Square Wave FS (N=10 terms)');</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>07 · FFT (Frequency Spectrum)</h3>
+            <pre><code>fs = 1000; T = 1; t = 0:1/fs:T-1/fs;
+x = cos(2*pi*50*t) + 0.5*sin(2*pi*120*t);
+N = length(x);
+X = fft(x)/N;
+f = (0:N/2-1)*fs/N;
+plot(f, 2*abs(X(1:N/2)));
+xlabel('Frequency (Hz)');
+title('Magnitude Spectrum |X(f)|');</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>08 · CT Convolution</h3>
+            <pre><code>dt = 0.01;
+t = -2:dt:6;
+x = double(t >= 0 & t <= 2); % rect
+h = exp(-t) .* double(t >= 0); % decay
+y = conv(x, h) * dt;
+t_y = (0:length(y)-1)*dt + 2*t(1);
+plot(t_y, y, 'r', 'LineWidth', 2);
+title('Convolution y(t) = x(t)*h(t)');</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>09 · DT Convolution</h3>
+            <pre><code>x = [1 2 3 4]; % input signal
+h = [1 1 1];   % impulse response
+y = conv(x, h);
+n = 0:length(y)-1;
+stem(n, y, 'filled', 'LineWidth', 2);
+xlabel('n'); ylabel('y[n]');
+title('DT Convolution y[n] = x[n]*h[n]');</code></pre>
+        </div>
+
+        <div class="card">
+            <h3>10 · Laplace (Symbolic)</h3>
+            <pre><code>syms t s
+% Define signal
+x = exp(-2*t) * heaviside(t);
+% Compute Laplace Transform
+X = laplace(x, t, s)
+% Compute Inverse
+x_back = ilaplace(X, s, t)
+% Plot
+fplot(x, [0 5]);
+title('Signal and its LT');</code></pre>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ AI TUTOR ═══════════════════════ -->
+<section id="ai" class="tab">
+    <div class="section-header">
+        <h2>🤖 AI Tutor — Signals &amp; Systems</h2>
+        <p class="section-sub">اسأل أي سؤال عن المادة بالعربي أو الإنجليزي</p>
+    </div>
+
+    <div class="ai-wrapper">
+        <div class="quick-prompts">
+            <p class="quick-label">Quick Questions:</p>
+            <div class="quick-btns">
+                <button class="quick-btn" data-q="What is the difference between energy signals and power signals? Give examples.">Energy vs Power Signals</button>
+                <button class="quick-btn" data-q="Explain Fourier Transform properties with examples, especially Time Shift and Frequency Shift.">FT Properties</button>
+                <button class="quick-btn" data-q="How do I test if a system is Linear and Time Invariant (LTI)? Give me a worked example.">LTI System Test</button>
+                <button class="quick-btn" data-q="Explain convolution step by step with a simple example of two rectangular pulses.">Convolution Steps</button>
+                <button class="quick-btn" data-q="What is the Region of Convergence (ROC) in Laplace Transform and why does it matter?">Laplace ROC</button>
+                <button class="quick-btn" data-q="اشرح لي خواص تحويل فورييه بالعربي مع أمثلة بسيطة">اشرح بالعربي</button>
+                <button class="quick-btn" data-q="Give me 3 practice problems on Fourier Transform with full solutions.">Practice Problems</button>
+                <button class="quick-btn" data-q="Explain partial fraction expansion for inverse Laplace transform with a worked example.">Partial Fractions</button>
             </div>
-            <p class="formula">x(t) = <span id="eqA">1.0</span> · sin(2π · <span id="eqF">1.0</span> · t + <span id="eqP">0.0</span>)</p>
-            <canvas id="sineCanvas" width="800" height="250"></canvas>
-        </section>
-    </main>
+        </div>
 
-    <footer>
-        <p>📡 Complete Reference Guide · 2026 | EC321M · Signals & Systems</p>
-    </footer>
+        <div class="chat-box" id="chatBox">
+            <div class="msg assistant">
+                <div class="msg-avatar">🤖</div>
+                <div class="msg-content">
+                    <strong>AI Tutor</strong>
+                    <p>مرحباً! أنا مساعدك في مادة Signals &amp; Systems (EC321M). يمكنك سؤالي بالعربي أو الإنجليزي عن أي موضوع في المادة — من أساسيات الإشارات، خواص الأنظمة، تحويل فورييه، لابلاس، والـ Convolution.<br><br>
+                    Hello! Ask me anything about EC321M in Arabic or English. I'm here to explain, give examples, and help with practice problems. 📡</p>
+                </div>
+            </div>
+        </div>
 
-    <script src="script.js"></script>
+        <div class="chat-input-area">
+            <textarea id="chatInput" placeholder="اكتب سؤالك هنا... / Type your question here..." rows="3"></textarea>
+            <button id="sendBtn" class="send-btn">
+                <span id="sendTxt">Send ↑</span>
+                <span id="sendLoad" style="display:none">...</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>📡 EC321M · Signals &amp; Systems · Complete Reference 2026</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
