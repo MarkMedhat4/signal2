@@ -33,6 +33,7 @@
     <button class="nav-btn active" data-section="signals">📊 Signals</button>
     <button class="nav-btn" data-section="systems">⚙️ Systems</button>
     <button class="nav-btn" data-section="fourier">🌊 Fourier</button>
+    <button class="nav-btn" data-section="lec7">📖 Lec 7 · FT</button>
     <button class="nav-btn" data-section="laplace">🔺 Laplace</button>
     <button class="nav-btn" data-section="convolution">✳️ Convolution</button>
     <button class="nav-btn" data-section="interactive">🎛️ Interactive</button>
@@ -263,6 +264,196 @@
                 </tbody>
             </table>
         </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ LECTURE 7 · FT EXAMPLES ═══════════════════════ -->
+<section id="lec7" class="tab">
+    <div class="section-header">
+        <h2>📖 Lecture 7 · Fourier Transform — Dr. Elsherbini</h2>
+        <p class="section-sub">FT Pairs · Properties · Worked Examples (ω-notation)</p>
+    </div>
+
+    <div class="card-grid">
+
+        <!-- FT Definition ω-notation -->
+        <div class="card">
+            <h3>📐 FT Definition (ω-notation)</h3>
+            <div class="formula-block vertical">
+                <div class="formula-row"><span class="label">Forward:</span><code>F(ω) = ∫₋∞^∞ f(t) e^(−jωt) dt</code></div>
+                <div class="formula-row"><span class="label">Inverse:</span><code>f(t) = (1/2π) ∫₋∞^∞ F(ω) e^(jωt) dω</code></div>
+            </div>
+            <div class="note">Note: ω = 2πf — this lecture uses ω notation, not f notation.</div>
+        </div>
+
+        <!-- FT Pairs Table from Lec7 -->
+        <div class="card">
+            <h3>📋 FT Pairs — Lecture 7</h3>
+            <table>
+                <thead><tr><th>Time Signal f(t)</th><th>FT F(ω)</th></tr></thead>
+                <tbody>
+                    <tr><td>δ(t)</td><td>1</td></tr>
+                    <tr><td>Aδ(t − t₀)</td><td>A·e^(−jωt₀)</td></tr>
+                    <tr><td>u(t)</td><td>πδ(ω) + 1/jω</td></tr>
+                    <tr><td>1 (constant)</td><td>2πδ(ω)</td></tr>
+                    <tr><td>K (constant)</td><td>2πKδ(ω)</td></tr>
+                    <tr><td>sgn(t)</td><td>2/jω</td></tr>
+                    <tr><td>e^(jω₀t)</td><td>2πδ(ω − ω₀)</td></tr>
+                    <tr><td>cos(ω₀t)</td><td>π[δ(ω−ω₀) + δ(ω+ω₀)]</td></tr>
+                    <tr><td>sin(ω₀t)</td><td>(π/j)[δ(ω−ω₀) − δ(ω+ω₀)]</td></tr>
+                    <tr><td>rect(t/T)</td><td>T·sinc(ωT/2)</td></tr>
+                    <tr><td>e^(−at)u(t), Re{a}&gt;0</td><td>1/(a + jω)</td></tr>
+                    <tr><td>t·e^(−at)u(t), Re{a}&gt;0</td><td>(1/(a+jω))²</td></tr>
+                    <tr><td>tri(t/T)</td><td>T·sinc²(Tω/2)</td></tr>
+                    <tr><td>(β/π)·sinc(βt)</td><td>rect(ω/2β)</td></tr>
+                    <tr><td>sinc²(Tt/2)</td><td>(2π/T)·tri(ω/T)</td></tr>
+                    <tr><td>cos(ω₀t)·u(t)</td><td>(π/2)[δ(ω−ω₀)+δ(ω+ω₀)] + jω/(ω₀²−ω²)</td></tr>
+                    <tr><td>sin(ω₀t)·u(t)</td><td>(π/2j)[δ(ω−ω₀)−δ(ω+ω₀)] + ω₀/(ω₀²−ω²)</td></tr>
+                    <tr><td>rect(t/T)·cos(ω₀t)</td><td>(T/2)[sinc((ω−ω₀)T/2) + sinc((ω+ω₀)T/2)]</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Properties Table ω-notation -->
+        <div class="card full-width">
+            <h3>🔢 FT Properties — ω-notation (Lecture 7)</h3>
+            <table>
+                <thead><tr><th>Operation</th><th>Time Function</th><th>Fourier Transform F(ω)</th></tr></thead>
+                <tbody>
+                    <tr><td>Linearity</td><td>af₁(t) + bf₂(t)</td><td>aF₁(ω) + bF₂(ω)</td></tr>
+                    <tr><td>Time Shift</td><td>f(t − t₀)</td><td>F(ω)·e^(−jωt₀)</td></tr>
+                    <tr><td>Time Scaling</td><td>f(at)</td><td>(1/|a|)·F(ω/a)</td></tr>
+                    <tr><td>Time Transformation</td><td>f(at − t₀)</td><td>(1/|a|)·F(ω/a)·e^(−jωt₀/a)</td></tr>
+                    <tr><td>Duality</td><td>F(t)</td><td>2πf(−ω)</td></tr>
+                    <tr><td>Frequency Shift</td><td>f(t)·e^(jω₀t)</td><td>F(ω − ω₀)</td></tr>
+                    <tr><td>Convolution</td><td>f₁(t) ⊗ f₂(t)</td><td>F₁(ω)·F₂(ω)</td></tr>
+                    <tr><td>Multiplication</td><td>f₁(t)·f₂(t)</td><td>(1/2π)·F₁(ω) ⊗ F₂(ω)</td></tr>
+                    <tr><td>Differentiation</td><td>dⁿf(t)/dtⁿ</td><td>(jω)ⁿ·F(ω)</td></tr>
+                    <tr><td>Freq Differentiation</td><td>(−jt)ⁿ·f(t)</td><td>dⁿF(ω)/dωⁿ</td></tr>
+                    <tr><td>Integration</td><td>∫₋∞ᵗ f(τ)dτ</td><td>(1/jω)·F(ω) + πF(0)δ(ω)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Worked Example 1: Linearity + Time Shift -->
+        <div class="card full-width">
+            <h3>✏️ Example 1 — Linearity &amp; Time Shift</h3>
+            <div class="note">
+                <strong>Problem:</strong> Find FT of g(t) = 0.5·g₁(t−2.5) + g₂(t−2.5)<br>
+                where g₁(t) = rect(t/1) (width 1), g₂(t) = rect(t/3) (width 3), both centered at 0
+            </div>
+            <div class="steps">
+                <div class="step"><span class="step-num">1</span>Rewrite: g(t) = 0.5·rect((t−2.5)/1) + 1·rect((t−2.5)/3)</div>
+                <div class="step"><span class="step-num">2</span>FT of rect(t/T) = T·sinc(ωT/2), so rect(t/1) → sinc(ω/2), rect(t/3) → 3·sinc(3ω/2)</div>
+                <div class="step"><span class="step-num">3</span>Apply Time Shift: f(t−t₀) → F(ω)·e^(−jωt₀), here t₀ = 2.5</div>
+                <div class="step"><span class="step-num">4</span><strong>Result:</strong> G(f) = 0.5·sinc(f)·e^(−j5πf) + 3·sinc(3f)·e^(−j5πf)</div>
+            </div>
+        </div>
+
+        <!-- Worked Example 2: Rect pulse direct integration -->
+        <div class="card">
+            <h3>✏️ Example 2 — Rect Pulse Direct Integration</h3>
+            <div class="note">
+                <strong>Given:</strong> f(t) = A for 0 ≤ t ≤ τ, else 0
+            </div>
+            <div class="steps">
+                <div class="step"><span class="step-num">1</span>F(ω) = ∫₀^τ A·e^(−jωt) dt</div>
+                <div class="step"><span class="step-num">2</span>= A·[e^(−jωt)/(−jω)]₀^τ = A·(e^(−jωτ)−1)/(−jω)</div>
+                <div class="step"><span class="step-num">3</span>Factor out e^(−jωτ/2): = 2Ae^(−jωτ/2)·sin(ωτ/2)/ω</div>
+                <div class="step"><span class="step-num">4</span><strong>Result:</strong> F(ω) = e^(−jωτ/2)·Aτ·sinc(ωτ/2)</div>
+            </div>
+        </div>
+
+        <!-- Worked Example 3: Time Scaling -->
+        <div class="card">
+            <h3>✏️ Example 3 — Time Scaling</h3>
+            <div class="note">
+                <strong>Given:</strong> g(t) = 3·rect[(t−4)/2]<br>
+                Rewrite as: g(t) = 3·f(0.5t − 2) where f(t) = rect(t)
+            </div>
+            <div class="steps">
+                <div class="step"><span class="step-num">1</span>FT{rect(t)} = 2·sinc(ω) [T=2, ω-notation sinc]</div>
+                <div class="step"><span class="step-num">2</span>Time scaling f(at): FT = (1/|a|)·F(ω/a), here a=0.5 → (1/0.5)·F(2ω) = 2·F(2ω)</div>
+                <div class="step"><span class="step-num">3</span>Time shift by t₀/a = 2/0.5 = 4: multiply by e^(−j4ω)</div>
+                <div class="step"><span class="step-num">4</span><strong>Result:</strong> G(ω) = 6·sinc(ω)·e^(−j4ω)</div>
+            </div>
+        </div>
+
+        <!-- cos/sin FT derivation -->
+        <div class="card full-width">
+            <h3>✏️ Example 4 — FT of cos(ω₀t) and sin(ω₀t)</h3>
+            <div class="formula-block vertical">
+                <div class="formula-row"><span class="label">cos expand:</span><code>cos(ω₀t) = ½·e^(jω₀t) + ½·e^(−jω₀t)</code></div>
+                <div class="formula-row"><span class="label">FT pair:</span><code>e^(±jω₀t) ↔ 2πδ(ω ∓ ω₀)</code></div>
+                <div class="formula-row"><span class="label">→ FT cos:</span><code>𝓕{cos(ω₀t)} = π[δ(ω−ω₀) + δ(ω+ω₀)]</code></div>
+                <div class="formula-row"><span class="label">sin expand:</span><code>sin(ω₀t) = (1/2j)·e^(jω₀t) − (1/2j)·e^(−jω₀t)</code></div>
+                <div class="formula-row"><span class="label">→ FT sin:</span><code>𝓕{sin(ω₀t)} = −jπ[δ(ω−ω₀) − δ(ω+ω₀)]</code></div>
+            </div>
+            <div class="note">
+                FT of cos → two symmetric impulses at ±ω₀ with magnitude π<br>
+                FT of sin → two imaginary antisymmetric impulses at ±ω₀ with magnitude ±jπ
+            </div>
+        </div>
+
+        <!-- Example 5: Cosine Pulse -->
+        <div class="card full-width">
+            <h3>✏️ Example 5 — FT of Cosine Pulse (Windowed Cosine)</h3>
+            <div class="note">
+                <strong>Given:</strong> f(t) = cos(ω₀t) for −τ &lt; t ≤ τ, else 0
+            </div>
+            <div class="steps">
+                <div class="step"><span class="step-num">1</span>Use cos = ½e^(jω₀t) + ½e^(−jω₀t), substitute into FT integral</div>
+                <div class="step"><span class="step-num">2</span>F(ω) = ½∫₋τ^τ e^(−j(ω−ω₀)t)dt + ½∫₋τ^τ e^(−j(ω+ω₀)t)dt = I + II</div>
+                <div class="step"><span class="step-num">3</span>Each integral evaluates to a sinc: I = τ·sinc[(ω−ω₀)τ]</div>
+                <div class="step"><span class="step-num">4</span><strong>Result:</strong> F(ω) = τ·sinc[(ω−ω₀)τ] + τ·sinc[(ω+ω₀)τ]</div>
+            </div>
+            <div class="note">Two sinc lobes centered at ±ω₀ — this is AM signal spectrum! Used in communications.</div>
+        </div>
+
+        <!-- Example 6: Freq Shift (AM) -->
+        <div class="card full-width">
+            <h3>✏️ Example 6 — Frequency Shift (AM Modulation)</h3>
+            <div class="note">
+                <strong>Given:</strong> g₁(t) = 2cos(200πt), g₂(t) = 5cos(1000πt)<br>
+                g₃(t) = g₁(t)·g₂(t) = 10cos(200πt)cos(1000πt)
+            </div>
+            <div class="steps">
+                <div class="step"><span class="step-num">1</span>Expand using Euler: g₃(t) = 5cos(200πt)e^(j1000πt) + 5cos(200πt)e^(−j1000πt)</div>
+                <div class="step"><span class="step-num">2</span>Apply frequency shift: multiply by e^(±jω₀t) → shift spectrum by ±ω₀</div>
+                <div class="step"><span class="step-num">3</span>G₃(ω) = 5π[δ(ω−200π−1000π)+δ(ω+200π−1000π)] + 5π[δ(ω−200π+1000π)+δ(ω+200π+1000π)]</div>
+                <div class="step"><span class="step-num">4</span><strong>Result:</strong> G₃(ω) = 5π[δ(ω−1200π) + δ(ω−800π) + δ(ω+800π) + δ(ω+1200π)]</div>
+            </div>
+            <div class="note">Inverse FT gives: g₃(t) = 5cos(1200πt) + 5cos(800πt) — two new frequencies!</div>
+        </div>
+
+        <!-- Example 7: Differentiation — sgn(t) -->
+        <div class="card">
+            <h3>✏️ Example 7 — Differentiation: FT of sgn(t)</h3>
+            <div class="note">
+                <strong>sgn(t)</strong> = +1 for t&gt;0, −1 for t&lt;0
+            </div>
+            <div class="steps">
+                <div class="step"><span class="step-num">1</span>Note: d/dt[sgn(t)] = 2δ(t)</div>
+                <div class="step"><span class="step-num">2</span>FT of δ(t) = 1, so FT of 2δ(t) = 2</div>
+                <div class="step"><span class="step-num">3</span>Differentiation property: FT{df/dt} = jω·F(ω)</div>
+                <div class="step"><span class="step-num">4</span>So jω·F(ω) = 2 → F(ω) = 2/jω</div>
+            </div>
+            <div class="formula-block"><div class="formula-row"><span class="label">Result:</span><code>sgn(t) ↔ 2/jω</code></div></div>
+        </div>
+
+        <!-- Key Relationships Summary -->
+        <div class="card">
+            <h3>🔑 Key Relationships Summary — Lec 7</h3>
+            <div class="rules-grid">
+                <div class="rule">f(t−t₀) → F(ω)·e^(−jωt₀) <br><em>Time delay = phase shift</em></div>
+                <div class="rule">f(t)·e^(jω₀t) → F(ω−ω₀)<br><em>Modulation = freq shift</em></div>
+                <div class="rule">f(at) → (1/|a|)F(ω/a)<br><em>Compress time = expand freq</em></div>
+                <div class="rule">F(t) → 2πf(−ω)<br><em>Duality: swap t↔ω</em></div>
+                <div class="rule">df/dt → jω·F(ω)<br><em>Diff in t = ×jω in freq</em></div>
+                <div class="rule">Conv in t → × in ω<br><em>The key LTI property</em></div>
+            </div>
+        </div>
+
     </div>
 </section>
 
