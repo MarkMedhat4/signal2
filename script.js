@@ -23,99 +23,94 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
 
-    const sigType = document.getElementById('sigType');
+    const sigType   = document.getElementById('sigType');
     const ampSlider = document.getElementById('amp');
-    const freqSlider = document.getElementById('freq');
-    const phaseSlider = document.getElementById('phase');
-    const decaySlider = document.getElementById('decay');
+    const freqSlider= document.getElementById('freq');
+    const phaseSlider=document.getElementById('phase');
+    const decaySlider=document.getElementById('decay');
     const decayCtrl = document.getElementById('decayCtrl');
 
-    const ampVal = document.getElementById('ampVal');
-    const freqVal = document.getElementById('freqVal');
-    const phaseVal = document.getElementById('phaseVal');
-    const decayVal = document.getElementById('decayVal');
+    const ampVal    = document.getElementById('ampVal');
+    const freqVal   = document.getElementById('freqVal');
+    const phaseVal  = document.getElementById('phaseVal');
+    const decayVal  = document.getElementById('decayVal');
     const formulaDisplay = document.getElementById('sigFormula');
 
-    // Props
-    const propE = document.getElementById('propE');
-    const propP = document.getElementById('propP');
+    const propE    = document.getElementById('propE');
+    const propP    = document.getElementById('propP');
     const propType = document.getElementById('propType');
-    const propT = document.getElementById('propT');
-    const propSym = document.getElementById('propSym');
-    const propDC = document.getElementById('propDC');
+    const propT    = document.getElementById('propT');
+    const propSym  = document.getElementById('propSym');
+    const propDC   = document.getElementById('propDC');
 
     function updateLabels() {
-        const A = parseFloat(ampSlider.value);
-        const f = parseFloat(freqSlider.value);
+        const A   = parseFloat(ampSlider.value);
+        const f   = parseFloat(freqSlider.value);
         const phi = parseFloat(phaseSlider.value);
-        const a = parseFloat(decaySlider.value);
-        const type = sigType.value;
+        const a   = parseFloat(decaySlider.value);
+        const type= sigType.value;
 
-        ampVal.textContent = A.toFixed(1);
-        freqVal.textContent = f.toFixed(1);
+        ampVal.textContent   = A.toFixed(1);
+        freqVal.textContent  = f.toFixed(1);
         phaseVal.textContent = phi.toFixed(2);
         decayVal.textContent = a.toFixed(1);
 
-        // Show/hide decay control
         decayCtrl.style.display = (type === 'exp') ? 'flex' : 'none';
 
-        // Formula
         const formulas = {
-            sine: `x(t) = ${A.toFixed(1)} · sin(2π · ${f.toFixed(1)} · t + ${phi.toFixed(2)})`,
+            sine:   `x(t) = ${A.toFixed(1)} · sin(2π · ${f.toFixed(1)} · t + ${phi.toFixed(2)})`,
             cosine: `x(t) = ${A.toFixed(1)} · cos(2π · ${f.toFixed(1)} · t + ${phi.toFixed(2)})`,
-            rect: `x(t) = ${A.toFixed(1)} · rect(t / ${(1/f).toFixed(2)})`,
-            exp: `x(t) = ${A.toFixed(1)} · e^(−${a.toFixed(1)}·t) · u(t)`,
-            tri: `x(t) = ${A.toFixed(1)} · tri(t / ${(1/f).toFixed(2)})`,
-            step: `x(t) = ${A.toFixed(1)} · u(t)`,
-            sum: `x(t) = sin(2π·t) + 0.5·sin(2π·3t) + 0.33·sin(2π·5t)  [Square wave approx]`
+            rect:   `x(t) = ${A.toFixed(1)} · rect(t / ${(1/f).toFixed(2)})`,
+            exp:    `x(t) = ${A.toFixed(1)} · e^(−${a.toFixed(1)}·t) · u(t)`,
+            tri:    `x(t) = ${A.toFixed(1)} · tri(t / ${(1/f).toFixed(2)})`,
+            step:   `x(t) = ${A.toFixed(1)} · u(t)`,
+            sum:    `x(t) = sin(2π·t) + 0.5·sin(2π·3t) + 0.33·sin(2π·5t)  [Square wave approx]`
         };
         formulaDisplay.textContent = formulas[type] || '';
-
-        // Properties
         updateProps(type, A, f, a);
     }
 
     function updateProps(type, A, f, a) {
         switch (type) {
             case 'sine': case 'cosine':
-                propE.textContent = '∞';
-                propP.textContent = (A * A / 2).toFixed(3);
+                propE.textContent    = '∞';
+                propP.textContent    = (A * A / 2).toFixed(3);
                 propType.textContent = 'Power Signal';
-                propT.textContent = (1 / f).toFixed(3) + ' s';
-                propSym.textContent = type === 'sine' ? 'Odd' : 'Even';
-                propDC.textContent = '0';
+                propT.textContent    = (1 / f).toFixed(3) + ' s';
+                propSym.textContent  = type === 'sine' ? 'Odd' : 'Even';
+                propDC.textContent   = '0';
                 break;
             case 'exp':
-                propE.textContent = (A * A / (2 * a)).toFixed(4);
-                propP.textContent = '0';
+                propE.textContent    = (A * A / (2 * a)).toFixed(4);
+                propP.textContent    = '0';
                 propType.textContent = 'Energy Signal';
-                propT.textContent = 'Aperiodic';
-                propSym.textContent = 'Neither';
-                propDC.textContent = '0';
+                propT.textContent    = 'Aperiodic';
+                propSym.textContent  = 'Neither';
+                propDC.textContent   = '0';
                 break;
             case 'step':
-                propE.textContent = '∞';
-                propP.textContent = (A * A / 2).toFixed(3);
+                propE.textContent    = '∞';
+                propP.textContent    = (A * A / 2).toFixed(3);
                 propType.textContent = 'Power Signal';
-                propT.textContent = 'Aperiodic';
-                propSym.textContent = 'Neither';
-                propDC.textContent = (A / 2).toFixed(2);
+                propT.textContent    = 'Aperiodic';
+                propSym.textContent  = 'Neither';
+                propDC.textContent   = (A / 2).toFixed(2);
                 break;
             case 'rect': case 'tri':
-                propE.textContent = (A * A / f).toFixed(4);
-                propP.textContent = '0';
+                propE.textContent    = (A * A / f).toFixed(4);
+                propP.textContent    = '0';
                 propType.textContent = 'Energy Signal';
-                propT.textContent = 'Aperiodic (single)';
-                propSym.textContent = 'Even';
-                propDC.textContent = '0';
+                propT.textContent    = 'Aperiodic (single)';
+                propSym.textContent  = 'Even';
+                propDC.textContent   = '0';
                 break;
             case 'sum':
-                propE.textContent = '∞';
-                propP.textContent = '0.562';
+                propE.textContent    = '∞';
+                propP.textContent    = '0.562';
                 propType.textContent = 'Power Signal';
-                propT.textContent = '1.000 s';
-                propSym.textContent = 'Odd';
-                propDC.textContent = '0';
+                propT.textContent    = '1.000 s';
+                propSym.textContent  = 'Odd';
+                propDC.textContent   = '0';
                 break;
         }
     }
@@ -123,13 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function drawSignal() {
         updateLabels();
 
-        const W = canvas.width;
-        const H = canvas.height;
-        const A = parseFloat(ampSlider.value);
-        const f = parseFloat(freqSlider.value);
+        const W   = canvas.width;
+        const H   = canvas.height;
+        const A   = parseFloat(ampSlider.value);
+        const f   = parseFloat(freqSlider.value);
         const phi = parseFloat(phaseSlider.value);
-        const a = parseFloat(decaySlider.value);
-        const type = sigType.value;
+        const a   = parseFloat(decaySlider.value);
+        const type= sigType.value;
 
         ctx.clearRect(0, 0, W, H);
 
@@ -150,17 +145,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
         ctx.beginPath(); ctx.moveTo(40, 0); ctx.lineTo(40, H); ctx.stroke();
 
-        // Axis labels
         ctx.fillStyle = '#4a6080';
         ctx.font = '11px JetBrains Mono, monospace';
         ctx.fillText('t', W - 15, cy - 5);
         ctx.fillText('x(t)', 42, 15);
 
-        // Scale: t goes from -1 to +9 seconds across width
         const tMin = -1, tMax = 9;
         const tRange = tMax - tMin;
-        const px2t = t => tMin + (t / W) * tRange;
-        const amp2py = v => cy - (v / 3.5) * (H / 2 - 20);
+        const px2t  = t => tMin + (t / W) * tRange;
+        const amp2py= v => cy - (v / 3.5) * (H / 2 - 20);
 
         function signalVal(t) {
             switch (type) {
@@ -194,11 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineWidth = 2.5;
         ctx.lineJoin = 'round';
         ctx.beginPath();
-
         let started = false;
         for (let px = 0; px < W; px++) {
-            const t = px2t(px);
-            const v = signalVal(t);
+            const t  = px2t(px);
+            const v  = signalVal(t);
             const py = amp2py(v);
             if (!started) { ctx.moveTo(px, py); started = true; }
             else ctx.lineTo(px, py);
@@ -211,8 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.beginPath();
         started = false;
         for (let px = 0; px < W; px++) {
-            const t = px2t(px);
-            const v = signalVal(t);
+            const t  = px2t(px);
+            const v  = signalVal(t);
             const py = amp2py(v);
             if (!started) { ctx.moveTo(px, py); started = true; }
             else ctx.lineTo(px, py);
@@ -237,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('input', drawSignal);
     });
 
-    // Resize canvas on window resize
     window.addEventListener('resize', () => {
         canvas.width = canvas.parentElement.clientWidth || 900;
         drawSignal();
@@ -249,11 +240,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // ═══════════════════════════════════════════
     // AI CHAT (Anthropic API)
     // ═══════════════════════════════════════════
-    const chatBox = document.getElementById('chatBox');
+    const chatBox   = document.getElementById('chatBox');
     const chatInput = document.getElementById('chatInput');
-    const sendBtn = document.getElementById('sendBtn');
-    const sendTxt = document.getElementById('sendTxt');
-    const sendLoad = document.getElementById('sendLoad');
+    const sendBtn   = document.getElementById('sendBtn');
+    const sendTxt   = document.getElementById('sendTxt');
+    const sendLoad  = document.getElementById('sendLoad');
     const quickBtns = document.querySelectorAll('.quick-btn');
 
     const SYSTEM_PROMPT = `You are an expert tutor for EC321M "Signals and Systems" course. 
@@ -277,7 +268,7 @@ Keep explanations clear, concise, and exam-focused.`;
         const div = document.createElement('div');
         div.className = `msg ${role}`;
         const avatar = role === 'user' ? '👤' : '🤖';
-        const name = role === 'user' ? 'You' : 'AI Tutor';
+        const name   = role === 'user' ? 'You' : 'AI Tutor';
         div.innerHTML = `
             <div class="msg-avatar">${avatar}</div>
             <div class="msg-content">
@@ -369,10 +360,29 @@ Keep explanations clear, concise, and exam-focused.`;
 
     quickBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Switch to AI tab
             document.querySelector('[data-section="ai"]')?.click();
             sendMessage(btn.dataset.q);
         });
     });
 
 });
+
+// ═══════════════════════════════════════════
+// PRACTICE PROBLEMS — SOLUTION TOGGLE
+// ═══════════════════════════════════════════
+function toggleSolution(btn) {
+    const solution = btn.nextElementSibling;
+    const isHidden = solution.classList.contains('hidden');
+
+    if (isHidden) {
+        solution.classList.remove('hidden');
+        btn.classList.add('open');
+        btn.querySelector('.toggle-icon').textContent = '▼';
+        btn.innerHTML = btn.innerHTML.replace('Show Solution', 'Hide Solution');
+    } else {
+        solution.classList.add('hidden');
+        btn.classList.remove('open');
+        btn.querySelector('.toggle-icon').textContent = '▶';
+        btn.innerHTML = btn.innerHTML.replace('Hide Solution', 'Show Solution');
+    }
+}
