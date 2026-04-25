@@ -22,8 +22,9 @@
             </div>
         </div>
         <div class="header-stats">
-            <span class="stat">18 Topics</span>
+            <span class="stat">20 Topics</span>
             <span class="stat">13 FT Props</span>
+            <span class="stat">6 Practice Qs</span>
             <span class="stat">AI Tutor</span>
         </div>
     </div>
@@ -34,6 +35,8 @@
     <button class="nav-btn" data-section="systems">⚙️ Systems</button>
     <button class="nav-btn" data-section="fourier">🌊 Fourier</button>
     <button class="nav-btn" data-section="lec7">📖 Lec 7 · FT</button>
+    <button class="nav-btn" data-section="ft-notes">📝 FT Notes</button>
+    <button class="nav-btn" data-section="practice">🎯 Practice</button>
     <button class="nav-btn" data-section="laplace">🔺 Laplace</button>
     <button class="nav-btn" data-section="convolution">✳️ Convolution</button>
     <button class="nav-btn" data-section="interactive">🎛️ Interactive</button>
@@ -56,12 +59,12 @@
             <table>
                 <thead><tr><th>Signal</th><th>Energy E</th><th>Power P</th><th>Type</th></tr></thead>
                 <tbody>
-                    <tr><td>A·cos(ω₀t)</td><td>∞</td><td>A²/2</td><td class="badge power">Power</td></tr>
-                    <tr><td>A·e⁻ᵃᵗu(t) a&gt;0</td><td>A²/2a</td><td>0</td><td class="badge energy">Energy</td></tr>
-                    <tr><td>A·e⁻ᵃ|ᵗ| a&gt;0</td><td>A²/a</td><td>0</td><td class="badge energy">Energy</td></tr>
-                    <tr><td>u(t)</td><td>∞</td><td>1/2</td><td class="badge power">Power</td></tr>
-                    <tr><td>eᵗu(t)</td><td>∞</td><td>∞</td><td class="badge neither">Neither</td></tr>
-                    <tr><td>A·rect(t/τ)</td><td>A²τ</td><td>0</td><td class="badge energy">Energy</td></tr>
+                    <tr><td>A·cos(ω₀t)</td><td>∞</td><td>A²/2</td><td><span class="badge power">Power</span></td></tr>
+                    <tr><td>A·e⁻ᵃᵗu(t) a&gt;0</td><td>A²/2a</td><td>0</td><td><span class="badge energy">Energy</span></td></tr>
+                    <tr><td>A·e⁻ᵃ|ᵗ| a&gt;0</td><td>A²/a</td><td>0</td><td><span class="badge energy">Energy</span></td></tr>
+                    <tr><td>u(t)</td><td>∞</td><td>1/2</td><td><span class="badge power">Power</span></td></tr>
+                    <tr><td>eᵗu(t)</td><td>∞</td><td>∞</td><td><span class="badge neither">Neither</span></td></tr>
+                    <tr><td>A·rect(t/τ)</td><td>A²τ</td><td>0</td><td><span class="badge energy">Energy</span></td></tr>
                 </tbody>
             </table>
             <div class="note">
@@ -109,7 +112,7 @@
                     <tr><td>Sine</td><td>A·sin(ω₀t)</td><td>FT: jA/2·[δ(F+f₀)−δ(F−f₀)]</td><td>P = A²/2</td></tr>
                     <tr><td>Unit Step</td><td>u(t)</td><td>FT: ½δ(F) + 1/(j2πF)</td><td>P = 1/2</td></tr>
                     <tr><td>Rect Pulse</td><td>rect(t/τ)</td><td>FT: τ·sinc(τF)</td><td>E = A²τ</td></tr>
-                    <tr><td>Triangle</td><td>tri(t/τ)</td><td>FT: τ·sinc²(τF)</td><td>E = A²τ/3 ... (approx)</td></tr>
+                    <tr><td>Triangle</td><td>tri(t/τ)</td><td>FT: τ·sinc²(τF)</td><td>E = A²τ/3 (approx)</td></tr>
                     <tr><td>Exp Decay</td><td>e⁻ᵃᵗu(t)</td><td>FT: 1/(a+j2πF)</td><td>E = 1/2a</td></tr>
                     <tr><td>Impulse</td><td>δ(t)</td><td>FT: 1 (flat spectrum)</td><td>E = 1</td></tr>
                     <tr><td>Complex Exp</td><td>e^(j2πf₀t)</td><td>FT: δ(F−f₀)</td><td>P = 1</td></tr>
@@ -153,7 +156,7 @@
             </div>
             <div class="note warning">
                 <strong>Disqualifiers (auto NL):</strong><br>
-                cos(·)  sin(·)  ln(·)  e^x  x²  |x|  +constant
+                cos(·) &nbsp; sin(·) &nbsp; ln(·) &nbsp; e^x &nbsp; x² &nbsp; |x| &nbsp; +constant
             </div>
         </div>
 
@@ -165,7 +168,7 @@
                 <div class="step"><span class="step-num">3</span>If y₁ = y₂ → TIME INVARIANT ✅</div>
             </div>
             <div class="note">
-                <strong>TV Clues:</strong> coefficient depends on t (like eᵗ, t², sin(t)·x(t)), or input has time scaling like x(at)
+                <strong>TV Clues:</strong> coefficient depends on t (like eᵗ, t², sin(t)·x(t)), or input has time scaling x(at)
             </div>
         </div>
 
@@ -275,8 +278,6 @@
     </div>
 
     <div class="card-grid">
-
-        <!-- FT Definition ω-notation -->
         <div class="card">
             <h3>📐 FT Definition (ω-notation)</h3>
             <div class="formula-block vertical">
@@ -286,7 +287,6 @@
             <div class="note">Note: ω = 2πf — this lecture uses ω notation, not f notation.</div>
         </div>
 
-        <!-- FT Pairs Table from Lec7 -->
         <div class="card">
             <h3>📋 FT Pairs — Lecture 7</h3>
             <table>
@@ -314,7 +314,6 @@
             </table>
         </div>
 
-        <!-- Properties Table ω-notation -->
         <div class="card full-width">
             <h3>🔢 FT Properties — ω-notation (Lecture 7)</h3>
             <table>
@@ -335,7 +334,6 @@
             </table>
         </div>
 
-        <!-- Worked Example 1: Linearity + Time Shift -->
         <div class="card full-width">
             <h3>✏️ Example 1 — Linearity &amp; Time Shift</h3>
             <div class="note">
@@ -350,12 +348,9 @@
             </div>
         </div>
 
-        <!-- Worked Example 2: Rect pulse direct integration -->
         <div class="card">
             <h3>✏️ Example 2 — Rect Pulse Direct Integration</h3>
-            <div class="note">
-                <strong>Given:</strong> f(t) = A for 0 ≤ t ≤ τ, else 0
-            </div>
+            <div class="note"><strong>Given:</strong> f(t) = A for 0 ≤ t ≤ τ, else 0</div>
             <div class="steps">
                 <div class="step"><span class="step-num">1</span>F(ω) = ∫₀^τ A·e^(−jωt) dt</div>
                 <div class="step"><span class="step-num">2</span>= A·[e^(−jωt)/(−jω)]₀^τ = A·(e^(−jωτ)−1)/(−jω)</div>
@@ -364,22 +359,17 @@
             </div>
         </div>
 
-        <!-- Worked Example 3: Time Scaling -->
         <div class="card">
             <h3>✏️ Example 3 — Time Scaling</h3>
-            <div class="note">
-                <strong>Given:</strong> g(t) = 3·rect[(t−4)/2]<br>
-                Rewrite as: g(t) = 3·f(0.5t − 2) where f(t) = rect(t)
-            </div>
+            <div class="note"><strong>Given:</strong> g(t) = 3·rect[(t−4)/2] → rewrite as 3·f(0.5t − 2)</div>
             <div class="steps">
-                <div class="step"><span class="step-num">1</span>FT{rect(t)} = 2·sinc(ω) [T=2, ω-notation sinc]</div>
-                <div class="step"><span class="step-num">2</span>Time scaling f(at): FT = (1/|a|)·F(ω/a), here a=0.5 → (1/0.5)·F(2ω) = 2·F(2ω)</div>
-                <div class="step"><span class="step-num">3</span>Time shift by t₀/a = 2/0.5 = 4: multiply by e^(−j4ω)</div>
+                <div class="step"><span class="step-num">1</span>FT{rect(t)} = 2·sinc(ω)</div>
+                <div class="step"><span class="step-num">2</span>Time scaling a=0.5 → (1/0.5)·F(2ω) = 2·F(2ω)</div>
+                <div class="step"><span class="step-num">3</span>Time shift by t₀/a = 4: multiply by e^(−j4ω)</div>
                 <div class="step"><span class="step-num">4</span><strong>Result:</strong> G(ω) = 6·sinc(ω)·e^(−j4ω)</div>
             </div>
         </div>
 
-        <!-- cos/sin FT derivation -->
         <div class="card full-width">
             <h3>✏️ Example 4 — FT of cos(ω₀t) and sin(ω₀t)</h3>
             <div class="formula-block vertical">
@@ -389,68 +379,374 @@
                 <div class="formula-row"><span class="label">sin expand:</span><code>sin(ω₀t) = (1/2j)·e^(jω₀t) − (1/2j)·e^(−jω₀t)</code></div>
                 <div class="formula-row"><span class="label">→ FT sin:</span><code>𝓕{sin(ω₀t)} = −jπ[δ(ω−ω₀) − δ(ω+ω₀)]</code></div>
             </div>
-            <div class="note">
-                FT of cos → two symmetric impulses at ±ω₀ with magnitude π<br>
-                FT of sin → two imaginary antisymmetric impulses at ±ω₀ with magnitude ±jπ
-            </div>
         </div>
 
-        <!-- Example 5: Cosine Pulse -->
         <div class="card full-width">
             <h3>✏️ Example 5 — FT of Cosine Pulse (Windowed Cosine)</h3>
-            <div class="note">
-                <strong>Given:</strong> f(t) = cos(ω₀t) for −τ &lt; t ≤ τ, else 0
-            </div>
+            <div class="note"><strong>Given:</strong> f(t) = cos(ω₀t) for −τ &lt; t ≤ τ, else 0</div>
             <div class="steps">
                 <div class="step"><span class="step-num">1</span>Use cos = ½e^(jω₀t) + ½e^(−jω₀t), substitute into FT integral</div>
-                <div class="step"><span class="step-num">2</span>F(ω) = ½∫₋τ^τ e^(−j(ω−ω₀)t)dt + ½∫₋τ^τ e^(−j(ω+ω₀)t)dt = I + II</div>
+                <div class="step"><span class="step-num">2</span>F(ω) = ½∫₋τ^τ e^(−j(ω−ω₀)t)dt + ½∫₋τ^τ e^(−j(ω+ω₀)t)dt</div>
                 <div class="step"><span class="step-num">3</span>Each integral evaluates to a sinc: I = τ·sinc[(ω−ω₀)τ]</div>
                 <div class="step"><span class="step-num">4</span><strong>Result:</strong> F(ω) = τ·sinc[(ω−ω₀)τ] + τ·sinc[(ω+ω₀)τ]</div>
             </div>
-            <div class="note">Two sinc lobes centered at ±ω₀ — this is AM signal spectrum! Used in communications.</div>
+            <div class="note">Two sinc lobes centered at ±ω₀ — this is AM signal spectrum!</div>
         </div>
 
-        <!-- Example 6: Freq Shift (AM) -->
         <div class="card full-width">
             <h3>✏️ Example 6 — Frequency Shift (AM Modulation)</h3>
-            <div class="note">
-                <strong>Given:</strong> g₁(t) = 2cos(200πt), g₂(t) = 5cos(1000πt)<br>
-                g₃(t) = g₁(t)·g₂(t) = 10cos(200πt)cos(1000πt)
-            </div>
+            <div class="note"><strong>Given:</strong> g₃(t) = 10cos(200πt)cos(1000πt)</div>
             <div class="steps">
-                <div class="step"><span class="step-num">1</span>Expand using Euler: g₃(t) = 5cos(200πt)e^(j1000πt) + 5cos(200πt)e^(−j1000πt)</div>
+                <div class="step"><span class="step-num">1</span>Expand: g₃(t) = 5cos(200πt)e^(j1000πt) + 5cos(200πt)e^(−j1000πt)</div>
                 <div class="step"><span class="step-num">2</span>Apply frequency shift: multiply by e^(±jω₀t) → shift spectrum by ±ω₀</div>
-                <div class="step"><span class="step-num">3</span>G₃(ω) = 5π[δ(ω−200π−1000π)+δ(ω+200π−1000π)] + 5π[δ(ω−200π+1000π)+δ(ω+200π+1000π)]</div>
-                <div class="step"><span class="step-num">4</span><strong>Result:</strong> G₃(ω) = 5π[δ(ω−1200π) + δ(ω−800π) + δ(ω+800π) + δ(ω+1200π)]</div>
+                <div class="step"><span class="step-num">3</span>G₃(ω) = 5π[δ(ω−1200π) + δ(ω−800π) + δ(ω+800π) + δ(ω+1200π)]</div>
+                <div class="step"><span class="step-num">4</span><strong>IFT gives:</strong> g₃(t) = 5cos(1200πt) + 5cos(800πt)</div>
             </div>
-            <div class="note">Inverse FT gives: g₃(t) = 5cos(1200πt) + 5cos(800πt) — two new frequencies!</div>
         </div>
 
-        <!-- Example 7: Differentiation — sgn(t) -->
         <div class="card">
-            <h3>✏️ Example 7 — Differentiation: FT of sgn(t)</h3>
-            <div class="note">
-                <strong>sgn(t)</strong> = +1 for t&gt;0, −1 for t&lt;0
-            </div>
+            <h3>✏️ Example 7 — FT of sgn(t)</h3>
+            <div class="note"><strong>sgn(t)</strong> = +1 for t&gt;0, −1 for t&lt;0</div>
             <div class="steps">
                 <div class="step"><span class="step-num">1</span>Note: d/dt[sgn(t)] = 2δ(t)</div>
-                <div class="step"><span class="step-num">2</span>FT of δ(t) = 1, so FT of 2δ(t) = 2</div>
-                <div class="step"><span class="step-num">3</span>Differentiation property: FT{df/dt} = jω·F(ω)</div>
-                <div class="step"><span class="step-num">4</span>So jω·F(ω) = 2 → F(ω) = 2/jω</div>
+                <div class="step"><span class="step-num">2</span>FT of 2δ(t) = 2</div>
+                <div class="step"><span class="step-num">3</span>Differentiation: jω·F(ω) = 2 → F(ω) = 2/jω</div>
+                <div class="step"><span class="step-num">4</span><strong>Result:</strong> sgn(t) ↔ 2/jω</div>
             </div>
-            <div class="formula-block"><div class="formula-row"><span class="label">Result:</span><code>sgn(t) ↔ 2/jω</code></div></div>
         </div>
 
-        <!-- Key Relationships Summary -->
         <div class="card">
-            <h3>🔑 Key Relationships Summary — Lec 7</h3>
+            <h3>🔑 Key Relationships Summary</h3>
             <div class="rules-grid">
-                <div class="rule">f(t−t₀) → F(ω)·e^(−jωt₀) <br><em>Time delay = phase shift</em></div>
+                <div class="rule">f(t−t₀) → F(ω)·e^(−jωt₀)<br><em>Time delay = phase shift</em></div>
                 <div class="rule">f(t)·e^(jω₀t) → F(ω−ω₀)<br><em>Modulation = freq shift</em></div>
                 <div class="rule">f(at) → (1/|a|)F(ω/a)<br><em>Compress time = expand freq</em></div>
                 <div class="rule">F(t) → 2πf(−ω)<br><em>Duality: swap t↔ω</em></div>
                 <div class="rule">df/dt → jω·F(ω)<br><em>Diff in t = ×jω in freq</em></div>
                 <div class="rule">Conv in t → × in ω<br><em>The key LTI property</em></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════ FT NOTES (NEW) ═══════════════════════ -->
+<section id="ft-notes" class="tab">
+    <div class="section-header">
+        <h2>📝 Fourier Transform — Study Notes</h2>
+        <p class="section-sub">Bilingual Reference · ω-notation · Core Ideas &amp; Takeaways · مذكرة دراسية</p>
+    </div>
+
+    <div class="card-grid">
+
+        <div class="card full-width">
+            <h3>💡 What is FT? | ما هو تحويل فورييه؟</h3>
+            <div class="bilingual-block">
+                <div class="bi-en">
+                    <p>The Fourier Transform converts a time-domain signal into its frequency-domain representation. Instead of describing how a signal changes over time, we describe what frequencies it contains and how strong each one is.</p>
+                </div>
+                <div class="bi-ar">
+                    <p>تحويل فورييه بيحوّل أي إشارة من نطاق الزمن (Time Domain) إلى نطاق التردد (Frequency Domain). بدل ما تقول الإشارة شكلها إيه مع الوقت، بتقول: مكوّنة من ترددات إيه وقد إيه قوة كل تردد.</p>
+                </div>
+            </div>
+            <div class="key-idea-box">
+                <span class="key-icon">📌</span>
+                <div>
+                    <strong>Core Idea | الفكرة الأساسية</strong><br>
+                    Every signal = Sum of sine and cosine waves<br>
+                    <span class="ar-text">أي إشارة = مجموع موجات جيبية (sin &amp; cos)</span><br><br>
+                    ✅ FT tells you: which frequencies exist + how strong each is<br>
+                    <span class="ar-text">✅ FT بيقولك: أي ترددات موجودة + قد إيه كل تردد قوي</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📐 FT Equations</h3>
+            <div class="formula-block vertical">
+                <div class="formula-row"><span class="label">Forward:</span><code>X(ω) = ∫₋∞^∞ x(t) · e^(−jωt) dt</code></div>
+                <div class="formula-row"><span class="label">Inverse:</span><code>x(t) = (1/2π) ∫₋∞^∞ X(ω) · e^(jωt) dω</code></div>
+            </div>
+            <div class="note">
+                <strong>x(t)</strong> → Signal in Time Domain<br>
+                <strong>X(ω)</strong> → Signal in Frequency Domain<br>
+                <strong>e^(−jωt)</strong> → Decomposes into sinusoids<br>
+                <strong>ω</strong> → Angular frequency (rad/s)
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🔑 Why Use FT? | ليه نستخدمه؟</h3>
+            <div class="bilingual-block">
+                <div class="bi-en"><p>Analysis in time domain → Complex. Analysis in frequency domain → Much easier! Analyzing audio, electrical signals, or waves becomes trivial once you know their frequency content.</p></div>
+                <div class="bi-ar"><p>بدل ما تحلل صوت، إشارة كهربائية، أو موجة في الزمن → روح تبص على الترددات اللي جواها. ده بيبسط الدنيا جداً!</p></div>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h3>📊 Complete FT Pairs Reference (ω-notation)</h3>
+            <table>
+                <thead><tr><th>Signal Name</th><th>x(t)</th><th>X(ω)</th><th>Notes</th></tr></thead>
+                <tbody>
+                    <tr><td>Delta Function</td><td>δ(t)</td><td>1</td><td>Flat spectrum — all freqs equally</td></tr>
+                    <tr><td>Constant Signal</td><td>1</td><td>2π·δ(ω)</td><td>DC only — zero freq</td></tr>
+                    <tr><td>One-sided Exp.</td><td>e^(−at)·u(t), a&gt;0</td><td>1/(a + jω)</td><td>⭐ Memorize this!</td></tr>
+                    <tr><td>Two-sided Exp.</td><td>e^(−a|t|)</td><td>2a/(a² + ω²)</td><td>Symmetric decay</td></tr>
+                    <tr><td>Rectangular</td><td>rect(t/τ)</td><td>τ·sinc(ωτ/2)</td><td>Pulse ↔ Sinc</td></tr>
+                    <tr><td>Sinc Function</td><td>sinc(Wt)</td><td>(π/W)·rect(ω/2W)</td><td>Ideal LPF</td></tr>
+                    <tr><td>Cosine</td><td>cos(ω₀t)</td><td>π[δ(ω−ω₀) + δ(ω+ω₀)]</td><td>Two impulses at ±ω₀</td></tr>
+                    <tr><td>Sine</td><td>sin(ω₀t)</td><td>jπ[δ(ω+ω₀) − δ(ω−ω₀)]</td><td>Imaginary impulses</td></tr>
+                    <tr><td>Unit Step</td><td>u(t)</td><td>π·δ(ω) + 1/(jω)</td><td>DC + odd part</td></tr>
+                    <tr><td>Gaussian</td><td>e^(−at²)</td><td>√(π/a)·e^(−ω²/4a)</td><td>Gaussian ↔ Gaussian</td></tr>
+                    <tr><td>sgn(t)</td><td>sgn(t)</td><td>2/jω</td><td>Via differentiation</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card full-width">
+            <h3>⚡ Key Takeaways | الأفكار الرئيسية</h3>
+            <div class="takeaways-grid">
+                <div class="takeaway-card">
+                    <div class="takeaway-icon">⬌</div>
+                    <strong>Time ↔ Frequency</strong>
+                    <p>Every time signal has a frequency representation</p>
+                    <p class="ar-text">كل إشارة زمنية ليها تمثيل تردد</p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-icon">✖️</div>
+                    <strong>Conv ↔ Multiply</strong>
+                    <p>Convolution in time = Multiplication in frequency</p>
+                    <p class="ar-text">Convolution في الزمن = ضرب في التردد</p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-icon">📐</div>
+                    <strong>Shift → Phase</strong>
+                    <p>Time shift adds a phase factor, magnitude unchanged</p>
+                    <p class="ar-text">الإزاحة في الزمن = Phase shift في التردد</p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-icon">🔄</div>
+                    <strong>Scaling Trade-off</strong>
+                    <p>Compress time → Expand frequency (and vice versa)</p>
+                    <p class="ar-text">تضغط الزمن → تتوسع في التردد</p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-icon">⚡</div>
+                    <strong>δ(t) → All Freqs</strong>
+                    <p>Impulse contains ALL frequencies equally (flat spectrum)</p>
+                    <p class="ar-text">النبضة فيها كل الترددات بالتساوي</p>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-icon">🔲</div>
+                    <strong>Constant → DC Only</strong>
+                    <p>Constant signal has ONLY zero frequency</p>
+                    <p class="ar-text">الإشارة الثابتة تردد صفر بس</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card full-width">
+            <h3>🇦🇷 ملخص عربي — أهم نقاط FT</h3>
+            <div class="arabic-summary">
+                <div class="ar-section">
+                    <h4>أهم الأزواج (لازم تحفظها):</h4>
+                    <ul class="ar-list">
+                        <li><code>e^(−at)u(t) → 1/(a + jω)</code> ← حفظها! أكتر زوج بييجي في الامتحانات</li>
+                        <li><code>δ(t) → 1</code> ← النبضة فيها كل الترددات</li>
+                        <li><code>1 → 2πδ(ω)</code> ← الإشارة الثابتة تردد صفر بس</li>
+                        <li><code>rect(t/τ) → τ·sinc(ωτ/2)</code> ← مستطيل ↔ sinc</li>
+                    </ul>
+                </div>
+                <div class="ar-section">
+                    <h4>أهم الخواص (فهم مش حفظ):</h4>
+                    <ul class="ar-list">
+                        <li><strong>الخطية:</strong> قسّم الإشارة الكبيرة لأجزاء أبسط</li>
+                        <li><strong>الإزاحة في الزمن:</strong> بتضيف phase shift في التردد</li>
+                        <li><strong>الـ Convolution:</strong> أهم خاصية — بتتحول لضرب بسيط</li>
+                        <li><strong>الـ Scaling:</strong> تضغط الزمن → توسع التردد والعكس</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════════════ PRACTICE PROBLEMS (NEW) ═══════════════════════ -->
+<section id="practice" class="tab">
+    <div class="section-header">
+        <h2>🎯 Practice Problems — Fourier Transform</h2>
+        <p class="section-sub">مسائل تدريبية محلولة | Solved Problems with Step-by-Step Solutions</p>
+    </div>
+
+    <div class="card-grid">
+
+        <!-- Problem Set 1 Header -->
+        <div class="card full-width problem-set-header">
+            <h3>📦 Problem Set 1 — Direct Fourier Transform | تحويل مباشر</h3>
+        </div>
+
+        <!-- Q1 -->
+        <div class="card full-width">
+            <div class="problem-header">
+                <span class="problem-num">Q1</span>
+                <span class="problem-title">Find the Fourier Transform of x(t) = e^(−3t)·u(t)</span>
+            </div>
+            <p class="problem-ar">أوجد تحويل فورييه للإشارة x(t) = e^(−3t)·u(t)</p>
+            <div class="solution-toggle" onclick="toggleSolution(this)">
+                <span class="toggle-icon">▶</span> Show Solution | عرض الحل
+            </div>
+            <div class="solution hidden">
+                <div class="steps">
+                    <div class="step"><span class="step-num">1</span>Apply the FT definition: X(ω) = ∫₀^∞ e^(−3t) · e^(−jωt) dt</div>
+                    <div class="step"><span class="step-num">2</span>Combine exponentials: X(ω) = ∫₀^∞ e^(−(3 + jω)t) dt</div>
+                    <div class="step"><span class="step-num">3</span>Evaluate: X(ω) = [ e^(−(3+jω)t) / (−(3+jω)) ]₀^∞ = 0 − (−1/(3+jω))</div>
+                    <div class="step"><span class="step-num">4</span><strong>X(ω) = 1 / (3 + jω)</strong></div>
+                </div>
+                <div class="answer-box">
+                    <code>X(ω) = 1 / (3 + jω)</code><br>
+                    Magnitude: |X(ω)| = 1/√(9 + ω²)
+                </div>
+                <div class="note">📌 Works when a &gt; 0 (signal decays). General form: e^(−at)u(t) ↔ 1/(a+jω)</div>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="card full-width">
+            <div class="problem-header">
+                <span class="problem-num">Q2</span>
+                <span class="problem-title">Find FT of x(t) = δ(t − 2)</span>
+            </div>
+            <p class="problem-ar">أوجد تحويل فورييه لـ x(t) = δ(t − 2)</p>
+            <div class="solution-toggle" onclick="toggleSolution(this)">
+                <span class="toggle-icon">▶</span> Show Solution | عرض الحل
+            </div>
+            <div class="solution hidden">
+                <div class="steps">
+                    <div class="step"><span class="step-num">1</span>FT definition: X(ω) = ∫₋∞^∞ δ(t − 2) · e^(−jωt) dt</div>
+                    <div class="step"><span class="step-num">2</span>Sifting property picks out value at t = 2: X(ω) = e^(−jω·2)</div>
+                </div>
+                <div class="answer-box">
+                    <code>X(ω) = e^(−j2ω)</code>
+                </div>
+                <div class="note">📌 Magnitude: |X(ω)| = 1 (flat spectrum!) &nbsp;&nbsp; Phase: ∠X(ω) = −2ω (linear phase)</div>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="card full-width">
+            <div class="problem-header">
+                <span class="problem-num">Q3</span>
+                <span class="problem-title">Using properties: Find FT of x(t) = t · e^(−2t)·u(t)</span>
+            </div>
+            <p class="problem-ar">باستخدام الخصائص: أوجد تحويل فورييه لـ x(t) = t · e^(−2t)·u(t)</p>
+            <div class="solution-toggle" onclick="toggleSolution(this)">
+                <span class="toggle-icon">▶</span> Show Solution | عرض الحل
+            </div>
+            <div class="solution hidden">
+                <div class="steps">
+                    <div class="step"><span class="step-num">1</span>Known pair: e^(−2t)u(t) ↔ 1/(2 + jω)</div>
+                    <div class="step"><span class="step-num">2</span>Use Freq Differentiation property: t·x(t) ↔ j · dX(ω)/dω</div>
+                    <div class="step"><span class="step-num">3</span>Differentiate X(ω) = 1/(2 + jω): dX/dω = −j / (2 + jω)²</div>
+                    <div class="step"><span class="step-num">4</span>Multiply by j: j · [−j/(2+jω)²] = 1/(2+jω)²</div>
+                </div>
+                <div class="answer-box">
+                    <code>X(ω) = 1 / (2 + jω)²</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem Set 2 Header -->
+        <div class="card full-width problem-set-header">
+            <h3>📦 Problem Set 2 — Properties Application | تطبيق الخصائص</h3>
+        </div>
+
+        <!-- Q4 -->
+        <div class="card full-width">
+            <div class="problem-header">
+                <span class="problem-num">Q4</span>
+                <span class="problem-title">If X(ω) = 1/(1+jω), find FT of y(t) = x(t−3)·e^(j5t)</span>
+            </div>
+            <p class="problem-ar">لو X(ω) = 1/(1+jω)، أوجد FT لـ y(t) = x(t−3)·e^(j5t)</p>
+            <div class="solution-toggle" onclick="toggleSolution(this)">
+                <span class="toggle-icon">▶</span> Show Solution | عرض الحل
+            </div>
+            <div class="solution hidden">
+                <div class="steps">
+                    <div class="step"><span class="step-num">1</span>Apply Time Shift to x(t−3): → X(ω)·e^(−j3ω) = e^(−j3ω)/(1+jω)</div>
+                    <div class="step"><span class="step-num">2</span>Apply Frequency Shift (multiplication by e^(j5t)): replace ω with (ω−5)</div>
+                    <div class="step"><span class="step-num">3</span>Combine both operations</div>
+                </div>
+                <div class="answer-box">
+                    <code>Y(ω) = e^(−j3(ω−5)) / (1 + j(ω−5))</code><br>
+                    <code>= e^(−j3ω+j15) / (1 + j(ω−5))</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="card full-width">
+            <div class="problem-header">
+                <span class="problem-num">Q5</span>
+                <span class="problem-title">Prove: FT{x(−t)} = X*(ω) for real x(t)</span>
+            </div>
+            <p class="problem-ar">أثبت: FT{x(−t)} = X*(ω) للإشارات الحقيقية</p>
+            <div class="solution-toggle" onclick="toggleSolution(this)">
+                <span class="toggle-icon">▶</span> Show Solution | عرض الحل
+            </div>
+            <div class="solution hidden">
+                <div class="steps">
+                    <div class="step"><span class="step-num">1</span>By definition: FT{x(−t)} = ∫₋∞^∞ x(−t)·e^(−jωt) dt</div>
+                    <div class="step"><span class="step-num">2</span>Substitute τ = −t → dτ = −dt, limits flip: = ∫₋∞^∞ x(τ)·e^(jωτ) dτ</div>
+                    <div class="step"><span class="step-num">3</span>This is X(ω) evaluated at −ω: = X(−ω)</div>
+                    <div class="step"><span class="step-num">4</span>For real x(t), conjugate symmetry applies: X(−ω) = X*(ω) ∎</div>
+                </div>
+                <div class="answer-box">
+                    <code>FT{x(−t)} = X(−ω) = X*(ω)</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem Set 3 Header -->
+        <div class="card full-width problem-set-header">
+            <h3>📦 Problem Set 3 — System Analysis | تحليل السيستمز</h3>
+        </div>
+
+        <!-- Q6 -->
+        <div class="card full-width">
+            <div class="problem-header">
+                <span class="problem-num">Q6</span>
+                <span class="problem-title">LTI system: h(t) = e^(−t)·u(t), input x(t) = e^(−2t)·u(t). Find y(t).</span>
+            </div>
+            <p class="problem-ar">سيستم LTI عنده h(t) = e^(−t)u(t) والمدخل x(t) = e^(−2t)u(t). أوجد y(t).</p>
+            <div class="solution-toggle" onclick="toggleSolution(this)">
+                <span class="toggle-icon">▶</span> Show Solution | عرض الحل
+            </div>
+            <div class="solution hidden">
+                <div class="steps">
+                    <div class="step"><span class="step-num">1</span>Find transforms: H(ω) = 1/(1+jω) &nbsp;and&nbsp; X(ω) = 1/(2+jω)</div>
+                    <div class="step"><span class="step-num">2</span>Y(ω) = X(ω)·H(ω) = 1/[(1+jω)(2+jω)]</div>
+                    <div class="step"><span class="step-num">3</span>Partial Fractions: Y(ω) = A/(1+jω) + B/(2+jω)<br>
+                        At jω=−1: A = 1/(2−1) = 1 &nbsp;|&nbsp; At jω=−2: B = 1/(1−2) = −1</div>
+                    <div class="step"><span class="step-num">4</span>Inverse FT each term</div>
+                </div>
+                <div class="answer-box">
+                    <code>y(t) = [e^(−t) − e^(−2t)] · u(t)</code>
+                </div>
+                <div class="note">📌 Convolution in time → Multiplication in frequency → Partial fractions → Inverse FT</div>
+            </div>
+        </div>
+
+        <!-- Quick Reference Checklist -->
+        <div class="card full-width">
+            <h3>✅ Quick Reference Checklist | قائمة المراجعة السريعة</h3>
+            <p style="color:var(--muted); font-size:.85rem; margin-bottom:.75rem">Before solving any FT problem, ask yourself | قبل حل أي مسألة FT، اسأل نفسك:</p>
+            <div class="checklist">
+                <label class="check-item"><input type="checkbox"> Can I use a known FT pair directly? | أقدر أستخدم زوج معروف مباشرة؟</label>
+                <label class="check-item"><input type="checkbox"> Is there a time shift? → Multiply X(ω) by e^(−jωt₀)</label>
+                <label class="check-item"><input type="checkbox"> Is there a frequency shift? → Replace ω with (ω−ω₀)</label>
+                <label class="check-item"><input type="checkbox"> Is it a convolution? → Multiply in frequency domain</label>
+                <label class="check-item"><input type="checkbox"> Is there multiplication by t? → Differentiate X(ω) and multiply by j</label>
+                <label class="check-item"><input type="checkbox"> Do I need partial fractions before inverse FT?</label>
             </div>
         </div>
 
@@ -474,7 +770,7 @@
                 <div class="formula-row"><span class="label">Inverse:</span><code>x(t) = (1/2πj)∫ X(s)e^(st)ds</code></div>
             </div>
             <div class="note">
-                FT is special case of LT when <strong>s = j2πF</strong> (σ = 0, on jω axis)<br>
+                FT is special case of LT when <strong>s = j2πF</strong> (σ = 0)<br>
                 ROC must include jω axis for FT to exist
             </div>
         </div>
@@ -562,10 +858,7 @@
                 <div class="formula-row"><span class="label">Integral:</span><code>y(t) = ∫₋∞^∞ x(τ)·h(t−τ)dτ</code></div>
                 <div class="formula-row"><span class="label">Alt:</span><code>y(t) = ∫₋∞^∞ h(τ)·x(t−τ)dτ</code></div>
             </div>
-            <div class="note">
-                Convolution in time → Multiplication in frequency!<br>
-                <code>Y(F) = X(F)·H(F)</code>
-            </div>
+            <div class="note">Convolution in time → Multiplication in frequency!<br><code>Y(F) = X(F)·H(F)</code></div>
         </div>
 
         <div class="card">
@@ -575,13 +868,11 @@
                 <div class="formula-row"><span class="label">Def:</span><code>y[n] = Σₖ x[k]·h[n−k]</code></div>
                 <div class="formula-row"><span class="label">Alt:</span><code>y[n] = Σₖ h[k]·x[n−k]</code></div>
             </div>
-            <div class="note">
-                Length of output: if x has M points, h has N points → y has <strong>M+N−1</strong> points
-            </div>
+            <div class="note">Length: if x has M points, h has N points → y has <strong>M+N−1</strong> points</div>
         </div>
 
         <div class="card">
-            <h3>⚡ Convolution Properties</h3>
+            <h3>⚡ Properties</h3>
             <div class="rules-grid">
                 <div class="rule"><strong>Commutative:</strong> x⊗h = h⊗x</div>
                 <div class="rule"><strong>Associative:</strong> (x⊗h₁)⊗h₂ = x⊗(h₁⊗h₂)</div>
@@ -598,37 +889,21 @@
                 <div class="step"><span class="step-num">y(t)</span>Output = input ⊗ impulse response</div>
             </div>
             <div class="note">
-                System is <strong>stable</strong> ↔ ∫|h(τ)|dτ &lt; ∞<br>
-                System is <strong>causal</strong> ↔ h(t) = 0 for t &lt; 0
+                System <strong>stable</strong> ↔ ∫|h(τ)|dτ &lt; ∞<br>
+                System <strong>causal</strong> ↔ h(t) = 0 for t &lt; 0
             </div>
         </div>
 
         <div class="card full-width">
             <h3>📊 Convolution Step-by-Step Method</h3>
             <div class="steps horizontal">
-                <div class="step-card">
-                    <div class="step-num-big">1</div>
-                    <strong>Flip</strong>
-                    <p>Flip h(τ) → h(−τ)</p>
-                </div>
+                <div class="step-card"><div class="step-num-big">1</div><strong>Flip</strong><p>Flip h(τ) → h(−τ)</p></div>
                 <div class="arrow">→</div>
-                <div class="step-card">
-                    <div class="step-num-big">2</div>
-                    <strong>Shift</strong>
-                    <p>Shift to get h(t−τ) for each t</p>
-                </div>
+                <div class="step-card"><div class="step-num-big">2</div><strong>Shift</strong><p>Shift to get h(t−τ) for each t</p></div>
                 <div class="arrow">→</div>
-                <div class="step-card">
-                    <div class="step-num-big">3</div>
-                    <strong>Multiply</strong>
-                    <p>Multiply x(τ)·h(t−τ)</p>
-                </div>
+                <div class="step-card"><div class="step-num-big">3</div><strong>Multiply</strong><p>Multiply x(τ)·h(t−τ)</p></div>
                 <div class="arrow">→</div>
-                <div class="step-card">
-                    <div class="step-num-big">4</div>
-                    <strong>Integrate</strong>
-                    <p>Integrate over τ → y(t)</p>
-                </div>
+                <div class="step-card"><div class="step-num-big">4</div><strong>Integrate</strong><p>Integrate over τ → y(t)</p></div>
             </div>
         </div>
 
@@ -717,112 +992,78 @@
     </div>
 
     <div class="card-grid">
-        <div class="card">
-            <h3>01 · Sine Wave</h3>
-            <pre><code>t = 0:0.01:2*pi;
+        <div class="card"><h3>01 · Sine Wave</h3><pre><code>t = 0:0.01:2*pi;
 y = sin(t);
 plot(t, y, 'b', 'LineWidth', 2);
 grid on;
 xlabel('t (s)'); ylabel('x(t)');
-title('Sine Wave');</code></pre>
-        </div>
+title('Sine Wave');</code></pre></div>
 
-        <div class="card">
-            <h3>02 · Unit Step u(t)</h3>
-            <pre><code>t = -5:0.01:5;
+        <div class="card"><h3>02 · Unit Step u(t)</h3><pre><code>t = -5:0.01:5;
 u = double(t >= 0);
 plot(t, u, 'r', 'LineWidth', 2);
 ylim([-0.2 1.2]);
 xlabel('t'); ylabel('u(t)');
-title('Unit Step Function');</code></pre>
-        </div>
+title('Unit Step Function');</code></pre></div>
 
-        <div class="card">
-            <h3>03 · Rectangular Pulse</h3>
-            <pre><code>t = -5:0.01:5;
+        <div class="card"><h3>03 · Rectangular Pulse</h3><pre><code>t = -5:0.01:5;
 A=2; t1=-1; t2=1;
 y = A*(double(t>=t1) - double(t>=t2));
 plot(t, y, 'g', 'LineWidth', 2);
-title('Rectangular Pulse');</code></pre>
-        </div>
+title('Rectangular Pulse');</code></pre></div>
 
-        <div class="card">
-            <h3>04 · Triangular Signal</h3>
-            <pre><code>t = -5:0.01:5;
+        <div class="card"><h3>04 · Triangular Signal</h3><pre><code>t = -5:0.01:5;
 A=2; T=2; t0=0;
 y = A*max(1-abs((t-t0)/T), 0);
 plot(t, y, 'm', 'LineWidth', 2);
-title('Triangular Signal');</code></pre>
-        </div>
+title('Triangular Signal');</code></pre></div>
 
-        <div class="card">
-            <h3>05 · Exp Decay</h3>
-            <pre><code>t = -1:0.01:5;
+        <div class="card"><h3>05 · Exp Decay</h3><pre><code>t = -1:0.01:5;
 a = 1.5;
 y = exp(-a*t) .* double(t>=0);
 plot(t, y, 'k', 'LineWidth', 2);
-title('Exponential Decay e^{-at}u(t)');</code></pre>
-        </div>
+title('Exponential Decay e^{-at}u(t)');</code></pre></div>
 
-        <div class="card">
-            <h3>06 · Fourier Series Reconstruction</h3>
-            <pre><code>t = -pi:0.01:pi; N=10;
+        <div class="card"><h3>06 · Fourier Series Reconstruction</h3><pre><code>t = -pi:0.01:pi; N=10;
 x = zeros(size(t));
 for k = 1:2:2*N-1
   x = x + (4/pi)*(1/k)*sin(k*t);
 end
 plot(t, x, 'b', 'LineWidth', 2);
-title('Square Wave FS (N=10 terms)');</code></pre>
-        </div>
+title('Square Wave FS (N=10 terms)');</code></pre></div>
 
-        <div class="card">
-            <h3>07 · FFT (Frequency Spectrum)</h3>
-            <pre><code>fs = 1000; T = 1; t = 0:1/fs:T-1/fs;
+        <div class="card"><h3>07 · FFT (Frequency Spectrum)</h3><pre><code>fs = 1000; T = 1; t = 0:1/fs:T-1/fs;
 x = cos(2*pi*50*t) + 0.5*sin(2*pi*120*t);
 N = length(x);
 X = fft(x)/N;
 f = (0:N/2-1)*fs/N;
 plot(f, 2*abs(X(1:N/2)));
 xlabel('Frequency (Hz)');
-title('Magnitude Spectrum |X(f)|');</code></pre>
-        </div>
+title('Magnitude Spectrum |X(f)|');</code></pre></div>
 
-        <div class="card">
-            <h3>08 · CT Convolution</h3>
-            <pre><code>dt = 0.01;
+        <div class="card"><h3>08 · CT Convolution</h3><pre><code>dt = 0.01;
 t = -2:dt:6;
-x = double(t >= 0 & t <= 2); % rect
-h = exp(-t) .* double(t >= 0); % decay
+x = double(t >= 0 & t <= 2);
+h = exp(-t) .* double(t >= 0);
 y = conv(x, h) * dt;
 t_y = (0:length(y)-1)*dt + 2*t(1);
 plot(t_y, y, 'r', 'LineWidth', 2);
-title('Convolution y(t) = x(t)*h(t)');</code></pre>
-        </div>
+title('Convolution y(t) = x(t)*h(t)');</code></pre></div>
 
-        <div class="card">
-            <h3>09 · DT Convolution</h3>
-            <pre><code>x = [1 2 3 4]; % input signal
-h = [1 1 1];   % impulse response
+        <div class="card"><h3>09 · DT Convolution</h3><pre><code>x = [1 2 3 4];
+h = [1 1 1];
 y = conv(x, h);
 n = 0:length(y)-1;
 stem(n, y, 'filled', 'LineWidth', 2);
 xlabel('n'); ylabel('y[n]');
-title('DT Convolution y[n] = x[n]*h[n]');</code></pre>
-        </div>
+title('DT Convolution y[n] = x[n]*h[n]');</code></pre></div>
 
-        <div class="card">
-            <h3>10 · Laplace (Symbolic)</h3>
-            <pre><code>syms t s
-% Define signal
+        <div class="card"><h3>10 · Laplace (Symbolic)</h3><pre><code>syms t s
 x = exp(-2*t) * heaviside(t);
-% Compute Laplace Transform
 X = laplace(x, t, s)
-% Compute Inverse
 x_back = ilaplace(X, s, t)
-% Plot
 fplot(x, [0 5]);
-title('Signal and its LT');</code></pre>
-        </div>
+title('Signal and its LT');</code></pre></div>
     </div>
 </section>
 
@@ -845,6 +1086,8 @@ title('Signal and its LT');</code></pre>
                 <button class="quick-btn" data-q="اشرح لي خواص تحويل فورييه بالعربي مع أمثلة بسيطة">اشرح بالعربي</button>
                 <button class="quick-btn" data-q="Give me 3 practice problems on Fourier Transform with full solutions.">Practice Problems</button>
                 <button class="quick-btn" data-q="Explain partial fraction expansion for inverse Laplace transform with a worked example.">Partial Fractions</button>
+                <button class="quick-btn" data-q="ما الفرق بين Bilateral وUnilateral Laplace Transform؟ ومتى نستخدم كل منهما؟">Bilateral vs Unilateral LT</button>
+                <button class="quick-btn" data-q="What does it mean geometrically when we say compress time, expand frequency? Give intuition.">Time-Freq Scaling Intuition</button>
             </div>
         </div>
 
